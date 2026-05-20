@@ -154,8 +154,9 @@ class Controller_Homepage extends Controller
 			return Response::forge(Presenter::forge('404'), 404);
 		}
 
-		// Show environment and phpinfo 
+		// Show environment value, phpini values and phpinfo 
 		echo (\Fuel::$env . "<br>");
+		echo (\Debug::phpini() . "<br>");
 		phpinfo();	
 	}
 

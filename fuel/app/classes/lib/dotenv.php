@@ -38,7 +38,7 @@ class DotEnv
     /**
      * load
      * 
-     * Load variables from .env file into $_SERVER and $_ENV superglobals
+     * Load variables from .env file into $_ENV superglobal
      * 
      * @access public
      * 
@@ -67,11 +67,10 @@ class DotEnv
             $name = trim($name);
             $value = trim($value);
 
-            // Add value to $_ENV and $_SERVER superglobals if it doesn't already exist
-            if (!array_key_exists($name, $_SERVER) && !array_key_exists($name, $_ENV)) {
+            // Add value to $_ENV superglobal if it doesn't already exist
+            if (!array_key_exists($name, $_ENV)) {
                 putenv(sprintf('%s=%s', $name, $value));
                 $_ENV[$name] = $value;
-                $_SERVER[$name] = $value;
             }
         }
     }
