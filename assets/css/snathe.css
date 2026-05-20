@@ -1,0 +1,84 @@
+header {
+	background-color: gray;
+	font-size: 48px;
+	height: 75px;
+	width: 100%;
+}
+a {
+	color: #883ced;
+}
+a:hover {
+	color: #af4cf0;
+	cursor: pointer;
+}
+
+body { 
+	margin: 0px 0px 40px 0px; 
+}
+
+table {
+	width: 100%;
+}
+
+th {
+	background: #000000;
+	color: #FFFFFF;
+	font-size: 12px;
+	padding: 3px;
+}
+
+#codelist tbody tr,
+#exchangelist tbody tr td[id*='r-ex-'] {
+	cursor: pointer;
+}
+
+h5[id*='about-'] {
+	cursor: pointer;
+}
+
+td {
+	font-family: "Courier New", monospace;
+	font-size: 12px;
+	padding: 3px;
+}
+
+.variable {
+	font-family: sans-serif;
+	font-size: 14px;
+}
+
+.font12 {
+	font-size: 12px;
+}
+
+.odd {
+	background-color: #DDDDDD;
+}
+
+.even {
+	background-color: #EEEEEE;
+}
+
+.resized {
+	margin-left: 7%;
+	margin-right: 7%;
+}
+
+.fullwidth {
+	width: 85%;
+}
+
+.selected {
+	background-color: #EEDDCC;
+}
+
+.errormessage {
+	padding-top:20px;
+	font-size: 16px;
+	color:#ff0000;
+	font-weight: bold;
+}
+
+div.dt-container {
+    margin-bottom: 1em;
+}
