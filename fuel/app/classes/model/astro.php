@@ -15,8 +15,8 @@ class Astro extends \Model
 	
 	private $timezone; // timezone reference
 	
-	private $sunInfo;	// sunrise/sunset info
-	private $timeInfo;	// local time info
+	private $sunInfo;			// sunrise/sunset info
+	private $timeOffsetInfo;	// local time offset info
 	
 	/**
 	 * Constructor
