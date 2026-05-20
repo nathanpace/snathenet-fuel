@@ -151,7 +151,7 @@ class Controller_Homepage extends Controller
 	
 		// Return not found if not localhost or home IP
 		if (in_array(Input::ip(), ['127.0.0.1', $homeIP]) === false) {
-			return Response::forge(Presenter::forge('404'), 404);
+			return Response::forge(View::forge('homepage/goaway'), 404);
 		}
 
 		// Show environment value, phpini values and phpinfo 
