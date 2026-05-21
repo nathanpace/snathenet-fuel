@@ -21,9 +21,9 @@ If the hosting already has FuelPHP installed, then all that *should* be needed t
 ---  
   
 
-# Changes to `/fuel/core` files for compatibility with PHP versions > 8.0 #
+# Changes to `/fuel/core` files for compatibility with PHP versions > 8.0 (up to 8.3) #
 
-With the 1.8.2 version of FuelPHP only being compatible with PHP8.0, it became clear that running this on any version later than this would cause problems. Therefore, a number of the core FuelPHP files have been amended to make the framework compatiable with PHP versions later than 8.0.
+With the 1.8.2 version of FuelPHP only being compatible with PHP8.0, it became clear that running this on any version later than this would cause problems. Therefore, a number of the core FuelPHP files have been amended to make the framework compatiable with PHP versions later than 8.0, up to 8.3.
 
 The changes made so far have been detailed below, organised by file.  
 *(It's likely that more changes may be required as further amendments are made to the site and new functionality is explored)*
@@ -53,3 +53,37 @@ The changes made so far have been detailed below, organised by file.
 
 `fuel/core/classes/security.php`
 - line 148: changed `static::` to `static::class` in call to `is_callable()`
+
+---  
+---  
+
+# Changes to `/fuel/core` files for compatibility with PHP version 8.4 #
+
+Further to the changes above, a few more of the of the core FuelPHP files have been amended to make the framework compatiable with PHP version 8.4.
+
+The changes made so far have been detailed below, organised by file.  
+*(It's likely that more changes may be required as further amendments are made to the site and new functionality is explored)*
+
+`fuel/core/classes/database/connection.php`
+- line 47: changed implicit nullable type declaration to an explict nullable type declaration by adding a question mark
+- line 282: changed implicit nullable type declaration to an explict nullable type declaration by adding a question mark
+- line 298: changed implicit nullable type declaration to an explict nullable type declaration by adding a question mark
+
+`fuel/core/classes/database/mysqli/connection.php`
+- lines 231-241: amended code to remove ping() function call as this has been deprecated
+
+`fuel/core/classes/database/query/builder/select.php`
+- line 63: changed implicit nullable type declaration to an explict nullable type declaration by adding a question mark
+
+`fuel/core/classes/db.php`
+- line 106: changed implicit nullable type declaration to an explict nullable type declaration by adding a question mark
+- line 121: changed implicit nullable type declaration to an explict nullable type declaration by adding a question mark
+
+`fuel/core/classes/errorhandler.php`
+- line 72: removed E_STRICT error level as this is deprecated
+
+`fuel/core/classes/input.php`
+- line 40: changed implicit nullable type declarations to explict nullable type declarations by adding a question mark
+
+`fuel/core/classes/input/instance.php`
+- line 85: changed implicit nullable type declarations to explict nullable type declarations by adding a question mark

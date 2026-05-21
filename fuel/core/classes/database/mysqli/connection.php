@@ -233,19 +233,13 @@ class Database_MySQLi_Connection extends \Database_Connection
 		// If no custom caching is given, use the global setting
 		is_null($caching) and $caching = $this->_config['enable_cache'];
 
-		// Make sure the database is connected
-		if ($this->_connection)
-		{
-			// Make sure the connection is still alive
-			if ( ! $this->_connection->ping())
-			{
-				throw new \Database_Exception($this->_connection->error.' [ '.$sql.' ]', $this->_connection->errno, null, $this->_connection->errno);
-			}
-		}
-		else
+		// Make sure the database is still connected 
+		if ( ! $this->_connection)
 		{
 			$this->connect();
+			// Removed ping() command here as this was deprecated in 8.4
 		}
+
 
 		if (\Fuel::$profiling and ! empty($this->_config['profiling']))
 		{

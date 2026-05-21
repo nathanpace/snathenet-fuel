@@ -44,7 +44,7 @@ abstract class Database_Connection
 	 *
 	 * @throws \FuelException
 	 */
-	public static function instance($name = null, array $config = null, $writable = true)
+	public static function instance($name = null, ?array $config = null, $writable = true)
 	{
 		\Config::load('db', true);
 		if ($name === null)
@@ -279,7 +279,7 @@ abstract class Database_Connection
 	 * @param   ...
 	 * @return  Database_Query_Builder_Select
 	 */
-	public function select(array $args = null)
+	public function select(?array $args = null)
 	{
 		$instance = new \Database_Query_Builder_Select($args);
 		return $instance->set_connection($this);
@@ -295,7 +295,7 @@ abstract class Database_Connection
 	 * @param   array   list of column names or array($column, $alias) or object
 	 * @return  Database_Query_Builder_Insert
 	 */
-	public function insert($table = null, array $columns = null)
+	public function insert($table = null, ?array $columns = null)
 	{
 		$instance = new \Database_Query_Builder_Insert($table, $columns);
 		return $instance->set_connection($this);

@@ -103,7 +103,7 @@ class DB
 	 * @param   array   columns to select
 	 * @return  Database_Query_Builder_Select
 	 */
-	public static function select_array(array $columns = null)
+	public static function select_array(?array $columns = null)
 	{
 		return \Database_Connection::instance(null, null, false)->select($columns);
 	}
@@ -118,7 +118,7 @@ class DB
 	 * @param   array   list of column names or array($column, $alias) or object
 	 * @return  Database_Query_Builder_Insert
 	 */
-	public static function insert($table = null, array $columns = null)
+	public static function insert($table = null, ?array $columns = null)
 	{
 		return \Database_Connection::instance()->insert($table, $columns);
 	}

@@ -82,7 +82,7 @@ class Input_Instance
 	/**
 	 *
 	 */
-	public function __construct(Request $new = null, Input_Instance $input = null)
+	public function __construct(?Request $new = null, ?Input_Instance $input = null)
 	{
 		// store the associated request
 		$this->request = $new;
