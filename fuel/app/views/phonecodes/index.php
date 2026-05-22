@@ -9,7 +9,7 @@
 <body>
 	<header>
 		<div class="container resized">
-			Welcome to snathe.net!
+			<a href="/" class="nostyle">Welcome to snathe.net</a>
 		</div>
 	</header>
 	<div class="container resized fullwidth">
