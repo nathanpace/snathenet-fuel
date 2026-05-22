@@ -82,3 +82,14 @@ td {
 div.dt-container {
     margin-bottom: 1em;
 }
+
+.nostyle {
+	color: #333333;
+	text-decoration: none;
+}
+
+.nostyle:hover {
+	color: #333333;
+	text-decoration: none;
+	cursor:pointer;
+}

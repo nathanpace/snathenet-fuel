@@ -49,8 +49,11 @@ return array(
 	 *
 	 */
 	'info' => 'homepage/info',
-	'locationSearch' => 'homepage/search',
+	
 	'phonecodes/about' => 'phonecodes/about',
 	'phonecodes' => 'phonecodes/index',
-	'codeSearch' => 'phonecodes/search'
+	'codeSearch' => 'phonecodes/search',
+	
+	'geostuff' => 'geostuff/index',
+	'locationSearch' => 'geostuff/search',
 );

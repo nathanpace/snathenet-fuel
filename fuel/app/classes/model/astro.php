@@ -66,12 +66,15 @@ class Astro extends \Model
         $sunToday = $this->calculateAndConvertSunInfo($today);
         $sunTomrw = $this->calculateAndConvertSunInfo($tomorrow);
         
-        // Work out the difference in sunrise/sunset times
+        // Work out the difference in sunrise/sunset/daylength times
         $sunTomrw['sunriseDiff'] = $this->calculateDiff($sunTomrw['sunrise_secs'], $sunToday['sunrise_secs']);
+		$sunTomrw['daylengthDiff'] = $this->calculateDiff($sunTomrw['daylength_secs'], $sunToday['daylength_secs'], "daylength");
         $sunTomrw['sunsetDiff'] = $this->calculateDiff($sunTomrw['sunset_secs'], $sunToday['sunset_secs']);
         
         // Remove the elements from the array that we no longer need
-        unset($sunToday['sunrise_secs'], $sunToday['sunset_secs'], $sunTomrw['sunrise_secs'], $sunTomrw['sunset_secs']);
+        unset(
+			$sunToday['sunrise_secs'], $sunToday['sunset_secs'], $sunToday['daylength_secs'], 
+			$sunTomrw['sunrise_secs'], $sunTomrw['sunset_secs'], $sunTomrw['daylength_secs']);
     
 		// Return calculated sunrise/sunset info for today and tomorrow
 		return [
@@ -90,13 +93,22 @@ class Astro extends \Model
 	 * 
 	 *  @return string formated string
 	 */
-    private function calculateDiff($tomrw, $today)
+    private function calculateDiff($tomrw, $today, $type = "sun")
     {
         // Get difference in seconds
         $diff = $tomrw - $today;
     
         // If it's a negative difference, consider it as "earlier"
-        $direction = ($diff < 0 ? 'earlier' : 'later');
+        switch ($type) {
+			case "sun" : 
+				$direction = ($diff < 0 ? 'earlier' : 'later');
+				break;
+
+			case "daylength" :
+				$direction = ($diff < 0 ? 'shorter' : 'longer');
+				break;				
+		}
+		
         
         // Get absolute number of seconds in difference (i.e. without plus/minus sign)
         $diff = abs($diff);
@@ -169,6 +181,11 @@ class Astro extends \Model
         $info['sunrise_secs'] = $sunrise_secs;
         $info['sunset_secs'] = $sunset_secs;
 		
+		// Work out day length
+		$daylengthSecs = $ss - $sr;
+		$info['daylength'] = gmdate("H \h\\r\s i \m\i\\n\s s \s\\e\c\s", $daylengthSecs); 
+		$info['daylength_secs'] = $daylengthSecs;
+
         // Remove temporary data
         unset($info['sunrisetmp'], $info['sunsettmp']);
         
