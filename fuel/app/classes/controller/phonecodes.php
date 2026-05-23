@@ -20,7 +20,7 @@ use \Model\Phonecodes;
  * @package  app
  * @extends  Controller
  */
-class Controller_Phonecodes extends Controller
+class Controller_Phonecodes extends Controller_Base
 {
 	/**
 	 * Index page action
@@ -30,7 +30,17 @@ class Controller_Phonecodes extends Controller
 	 */
 	public function action_index()
 	{
-		return Response::forge(View::forge('phonecodes/index'));
+		$this->setPageAttributes([
+			'js' => ['https://cdn.datatables.net/2.3.7/js/dataTables.js','codesearch.js'],
+			'css' => ['https://cdn.datatables.net/2.3.7/css/dataTables.dataTables.css'],
+			'title' => 'snathe.net - STD code search tool',
+		]);
+
+		$this->setContent([
+			'body' => View::forge('phonecodes/content')
+		]);
+
+		//return Response::forge(View::forge('phonecodes/index'));
 	}
 	
 	/**
@@ -43,7 +53,7 @@ class Controller_Phonecodes extends Controller
 	{
 		// Redirect to 404 page if not called from AJAX
 		if (Input::is_ajax() !== true) {
-			return Response::forge(Presenter::forge('404'), 404);
+			return $this->show404();
 		}
 
 		// End process if no search term has been passed
@@ -74,7 +84,7 @@ class Controller_Phonecodes extends Controller
 				break;
 
 			default: // Unrecognised search, treat as 404
-				return Response::forge(Presenter::forge('404'), 404);
+				return $this->show404();
 		}
 	}
 	
@@ -88,7 +98,7 @@ class Controller_Phonecodes extends Controller
 	{ 
 		// Redirect to 404 page if not called from AJAX
 		if (Input::is_ajax() !== true) {
-			return Response::forge(Presenter::forge('404'), 404);
+			return $this->show404();
 		}
 
 		return Response::forge(View::forge('phonecodes/about'));

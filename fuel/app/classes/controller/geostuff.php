@@ -23,7 +23,7 @@ use \Model\WeatherAPI; 	// Weather information
  * @package  app
  * @extends  Controller
  */
-class Controller_Geostuff extends Controller
+class Controller_Geostuff extends Controller_Base
 {
 
 	/**
@@ -34,7 +34,14 @@ class Controller_Geostuff extends Controller
 	 */
 	public function action_index()
 	{
-		return Response::forge(Presenter::forge('geostuff/index'));
+		$this->setPageAttributes([
+			'js' => ['locationsearch.js', 'clocks2.js'],
+		]);
+
+		$this->setContent([
+			'body' => Presenter::forge('geostuff/content')
+		]);
+
 	}
 	
 	/**
@@ -48,7 +55,7 @@ class Controller_Geostuff extends Controller
 
 		// Redirect to 404 page if not called from AJAX
 		if (Input::is_ajax() !== true) {
-			return Response::forge(Presenter::forge('404'), 404);
+			return $this->show404();
 		}
 		
 		// If location from input is blank, treat as random place

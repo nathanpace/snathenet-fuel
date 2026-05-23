@@ -42,10 +42,10 @@
 		<?php endif; ?>
 	</tr>
 	<?php if (!array_key_exists('error', $placeInfo)) : ?>
-	<script type="text/javascript">new showLocalTime("<?=$placeId;?>",
-													 "<?=$page['currentTime'];?>",
-													 "<?=$placeInfo['offset']['total_mins'];?>",
-													 "short");</script>
+	<script>new showLocalTime("<?=$placeId;?>",
+							  "<?=$page['currentTime'];?>",
+							  "<?=$placeInfo['offset']['total_mins'];?>",
+							  "short");</script>
 	<?php endif;?>
 	<?php endforeach; ?>
 </table>

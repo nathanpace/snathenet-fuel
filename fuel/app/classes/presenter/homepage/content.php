@@ -3,20 +3,23 @@
  * Fuel is a fast, lightweight, community driven PHP 5.4+ framework.
  *
  * @package    Fuel
- * @version    1.8.2
+ * @version    1.9-dev
  * @author     Fuel Development Team
  * @license    MIT License
  * @copyright  2010 - 2019 Fuel Development Team
  * @link       https://fuelphp.com
  */
+use \Model\GeocodeAPI;
+use \Model\Astro;
+use \Model\WeatherAPI;
 
 /**
- * The homepage 404 presenter.
+ * The homepage index presenter.
  *
  * @package  app
  * @extends  Presenter
  */
-class Presenter_404 extends Presenter
+class Presenter_Homepage_Content extends Presenter
 {
 	/**
 	 * Prepare the view data, keeping this in here helps clean up
@@ -26,7 +29,11 @@ class Presenter_404 extends Presenter
 	 */
 	public function view()
 	{
-		$messages = array('Aw, crap!', 'Bloody Hell!', 'Uh Oh!', 'Nope, not here.', 'Huh?', 'Well, darn it!', 'Fiddlesticks!');
-		$this->title = $messages[array_rand($messages)];
+		$timezone = new \DateTimeZone(getenv('HOME_TZ'));
+		$now = new \DateTime();
+		$now->setTimeZone($timezone);
+		$then = new \DateTime('@266544601');
+		$age = $then->diff($now);
+		$this->age = $age->y;
 	}
 }

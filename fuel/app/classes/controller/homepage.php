@@ -23,18 +23,27 @@ use \Model\WeatherAPI; 	// Weather information
  * @package  app
  * @extends  Controller
  */
-class Controller_Homepage extends Controller
+class Controller_Homepage extends Controller_Base
 {
 
 	/**
-	 * Homepage
+	 * Index page
 	 *
 	 * @access  public
 	 * @return  Response
 	 */
 	public function action_index()
 	{
-		return Response::forge(Presenter::forge('homepage/index'));
+		// Set page attributes in base template
+		$this->setPageAttributes([
+			'js' => ['homepage.js'],
+		]);
+
+		// Forge homepage body content and set in base template
+		$this->setContent([
+			'body' => Presenter::forge('homepage/content')
+		]);
+
 	}
 	
 
