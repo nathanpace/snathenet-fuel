@@ -239,20 +239,23 @@ class Phonecodes extends \Model
 			$groupMap[] = $code['id_exchangeGroup'];
 		}
 
-		// Search against the STD code (numeric), 
-        // or the code name - in this case, we use the search delimiters to isolate the search term
-		$codes = $this->db->select(['`ExchangeGroupList`.`STDCode`', '`Range`', '`Name`', 
-									'`GroupType`', '`GroupID`', '`GroupName`', 
-									'`PreviousCodes`', '`OriginalCode`', '`mapping`', '`mappingReason`', '`otherNotes`'])
-						  ->from('ExchangeGroupList')
-						  ->join('ChargeGroupExchanges', 'LEFT')
-						  ->on('`ChargeGroupExchanges`.`ExchangeGroupID`', '=', '`ExchangeGroupList`.`id`')
-						  ->where('`id`', 'IN', $groupMap)
-						  ->execute();
+		// Only continue if there are results from stage one
+		if (!empty($groupMap)) {
+			// Search against the STD code (numeric), 
+			// or the code name - in this case, we use the search delimiters to isolate the search term
+			$codes = $this->db->select(['`ExchangeGroupList`.`STDCode`', '`Range`', '`Name`', 
+										'`GroupType`', '`GroupID`', '`GroupName`', 
+										'`PreviousCodes`', '`OriginalCode`', '`mapping`', '`mappingReason`', '`otherNotes`'])
+							->from('ExchangeGroupList')
+							->join('ChargeGroupExchanges', 'LEFT')
+							->on('`ChargeGroupExchanges`.`ExchangeGroupID`', '=', '`ExchangeGroupList`.`id`')
+							->where('`id`', 'IN', $groupMap)
+							->execute();
 
-		// Get all matching exchanges for all codes
-		$return = $this->getExchangesForCodes($codes);
-        
+			// Get all matching exchanges for all codes
+			$return = $this->getExchangesForCodes($codes);
+		}
+
         // Return the data
 		return $return;
 	}
