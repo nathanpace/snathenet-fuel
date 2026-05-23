@@ -3,7 +3,7 @@
 <head>
 	<meta charset="utf-8">
 	<title>snathe.net</title>
-	<?=Asset::css(['bootstrap.css', 'snathe.css']); ?>
+	<?=Asset::css(['bootstrap/bootstrap.css', 'snathe.css']); ?>
 </head>
 <body>
 	<header>
