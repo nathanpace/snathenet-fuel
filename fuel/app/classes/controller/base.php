@@ -25,7 +25,7 @@ class Controller_Base extends Controller_Template
 	private $defaultTitle = "snathe.net - PHP developer in NW England for hire";
 	
 	// Default CSS files to be loaded
-	private $defaultCSS = ['bootstrap.css', 'snathe.css'];
+	private $defaultCSS = ['bootstrap/bootstrap.css', 'snathe.css'];
 
 	// Default JS files to be loaded
 	private $defaultJS = ['https://ajax.googleapis.com/ajax/libs/jquery/3.7.1/jquery.min.js'];
