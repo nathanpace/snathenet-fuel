@@ -60,6 +60,8 @@ function doSearch(formData)
 		});
 	}).fail(function() {
 		alert("Unable to perform search, please try again later.");
+		$('#submitsearch').prop('value', ' Search ');
+		$('#submitsearch').prop('disabled', false);
 	});
 }
 
