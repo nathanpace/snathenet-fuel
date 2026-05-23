@@ -2,7 +2,7 @@
 	<h5>Sorry, no matching location found.</h5>
 <?php else : ?>
 
-<table border="1">	
+<table>	
 	<tr>
 		<th rowspan="2">Location</th>
 		<th rowspan="2">Latitude/Longitude</th>

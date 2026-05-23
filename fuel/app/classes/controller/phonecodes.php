@@ -37,10 +37,9 @@ class Controller_Phonecodes extends Controller_Base
 		]);
 
 		$this->setContent([
-			'body' => View::forge('phonecodes/content')
+			'body' => Presenter::forge('phonecodes/content') 
 		]);
 
-		//return Response::forge(View::forge('phonecodes/index'));
 	}
 	
 	/**
@@ -58,7 +57,7 @@ class Controller_Phonecodes extends Controller_Base
 
 		// End process if no search term has been passed
 		if (empty(Input::post('searchterm'))) {
-			return View::forge('phonecodes/nomatch', ['searchType' => "data", 'searchTerm' => null]);
+			return self::noresults("data");
 		}
 
 		// Create new Phonecodes instance
@@ -117,7 +116,7 @@ class Controller_Phonecodes extends Controller_Base
 		
 		// Handle no results returned from search
 		if (count($results) < 1) {
-			return View::forge('phonecodes/nomatch', ['searchType' => "code", 'searchTerm' => Input::post('searchterm')]);
+			return self::noresults("code", Input::post('searchterm'));
 		}
 		
 		// Results returned, set up data to pass to view
@@ -145,7 +144,7 @@ class Controller_Phonecodes extends Controller_Base
 		
 		// Handle no results returned from search
 		if (count($results) < 1) {
-			return View::forge('phonecodes/nomatch', ['searchType' => "group", 'searchTerm' => Input::post('searchterm')]);
+			return self::noresults("group", Input::post('searchterm'));
 		}
 		
 		// Results returned, set up data to pass to view
@@ -173,7 +172,8 @@ class Controller_Phonecodes extends Controller_Base
 
 		// Handle no results returned from search
 		if (count($results) < 1) {
-			return View::forge('phonecodes/nomatch', ['searchType' => "exchange", 'searchTerm' => Input::post('searchterm')]);
+			return self::noresults("exchange", Input::post('searchterm'));
+			//return View::forge('phonecodes/nomatch', ['searchType' => "exchange", 'searchTerm' => Input::post('searchterm')]);
 		}
 
 		// Results returned, set up data to pass to view
@@ -206,7 +206,7 @@ class Controller_Phonecodes extends Controller_Base
 		
 		// Handle no results returned from search
 		if (count($results['Codes']) < 1) {
-			return View::forge('phonecodes/nomatch', ['searchType' => "historical data", 'searchTerm' => Input::post('searchterm')]);
+			return self::noresults("historical data", Input::post('searchterm'));	
 		}
 
 		// Results returned, set up data to pass to view
@@ -222,5 +222,19 @@ class Controller_Phonecodes extends Controller_Base
 
 		// Pass data to view and generate output
 		return View::forge('phonecodes/searchhistorical', $pageData);
+	}
+
+	/**
+	 * @function noresults
+	 * @description wrapper function for displaying no results messages
+	 * 
+	 * @access private
+	 * @param string $searchType the type of search being performed
+	 * @param string|null $searchTerm the search term submitted. Null if not supplied
+	 * @return View
+	 */
+	private static function noresults($searchType, $searchTerm = null)
+	{
+		return View::forge('phonecodes/nomatch', ['searchType' => $searchType, 'searchTerm' => $searchTerm]);
 	}
 }

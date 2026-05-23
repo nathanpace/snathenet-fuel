@@ -7,7 +7,7 @@
 				<script>new showLocalTime('current','<?=$currentTime;?>', 0, 'long');</script>
 				<hr>
 				<div id="static-table">
-					<table border="1">
+					<table>
 						<tr>
 							<th rowspan="2">Location</th>
 							<th rowspan="2">Latitude/Longitude</th>
@@ -53,16 +53,16 @@
 				</div>
 				<hr>
 				<?php
-					// Form 
+					// Search form
+					// Defined in presenter/geostuff/content.php
 					echo Form::open();
-					echo Form::label('Location search (either UK postcode or GB place name; leave blank for random location):&nbsp;', 'location');
-					echo Form::input('location', '', array('id' => 'location'));
-					echo Form::submit('submit', ' Search ');
+					echo $searchForm->field('location')->build();
+					echo $searchForm->field('submitsearch')->build();
 					echo Form::close();
 				?>
 				<br>
 				<div id="search-results">
-					<!-- search reslts will populate in here via AJAX -->
+					<!-- search results will populate in here via AJAX -->
 				</div>
 				<br>
 				<div style="font-style: italic">

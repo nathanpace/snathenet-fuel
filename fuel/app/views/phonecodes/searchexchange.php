@@ -2,7 +2,7 @@
 <h4>Search results for "<?=$searchTerm;?>" in <?=$searchType;?>:</h4>
 On any row, clicking the current STD code will perform a search on that code.
 <p></p>
-<table border="1" id="exchangelist" class="display">
+<table id="exchangelist" class="display">
 	<thead>
 		<tr>
 			<th id="h-e-prev-codes">Previous<br/>STD&nbsp;code(s)</th>

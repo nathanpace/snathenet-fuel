@@ -5,7 +5,7 @@
 </p> 
 Code Count: <?=$resultCount['codes'];?><br/>
 <p></p>
-<table border="1" id="histcodelist" class="display">
+<table id="histcodelist" class="display">
 	<thead>
 		<tr>
 			<th id="h-hc-std-code">STD<br/>Code</th>

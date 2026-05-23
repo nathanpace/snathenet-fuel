@@ -15,27 +15,16 @@
 					</ul>
 				</p>
 				<?php
-
-					// Dropdown options for search types
-					$searchTypes = [
-						'code' => 'Code',
-						'group' => 'Charge Group',
-						'exchange' => 'Exchange',
-						'historical' => 'Historical Info',
-					];
-
-					// Form 
 					echo Form::open();
-					echo Form::label('Search term:&nbsp;', 'search');
-					echo Form::input('search', '', ['id' => 'searchterm']);
-					echo("<br/>");
-					echo Form::label('Search type:&nbsp;', 'searchtype');
-					echo Form::select('searchtype', 
-									  'code', 
-									  $searchTypes,
-									  array('id' => 'searchtype'));
-					echo("<br/>");
-					echo Form::button('submitsearch', ' Search ', array('id' => 'submitsearch'));
+					echo $searchForm->field('searchterm')->build();
+				?>
+				<br/>
+				<?php
+					echo $searchForm->field('searchtype')->build();
+				?>
+				<br/>
+				<?php
+					echo $searchForm->field('submitsearch')->build();
 					echo Form::close();
 				?>
 

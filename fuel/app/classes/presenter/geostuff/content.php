@@ -119,5 +119,29 @@ class Presenter_Geostuff_Content extends Presenter
 		$this->todayDate = $today->format("D M j 'y");
 		$this->tomorrowDate = $tomorrow->format("D M j 'y");
 		$this->tomorrowGmtBst = $tomorrow->format("I") === "1" ? "BST" : "GMT";
+
+		// Build search form and set in view
+		$this->searchForm = $this->buildSearchForm();
+	}
+
+	/**
+	 * @function buildSearchForm
+	 * @description Builds the search form using \Fieldset and passes object to form
+	 * 
+	 * @access private
+	 * 
+	 * @return Fieldset
+	 */
+	private function buildSearchForm()
+	{
+		// Text for the label
+		$labelText = "Location search (either UK postcode GB place name; leave blank for random location):&nbsp;";
+		
+		// Create form
+		$searchform = Fieldset::forge('locationsearch');
+		$searchform->add('location', $labelText, ['id' => 'location']);
+		$searchform->add('submitsearch', '', ['type' => 'submit', 'value' => ' Search ']);
+		
+		return $searchform;
 	}
 }

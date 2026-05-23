@@ -3,7 +3,7 @@
 
 Click on a row to view or hide the list of exchanges in that area.
 <p></p>
-<table border="1" id="codelist" class="display">
+<table id="codelist" class="display">
 	<thead>
 		<tr>
 			<th id="h-c-std-code">STD<br/>Code</th>
