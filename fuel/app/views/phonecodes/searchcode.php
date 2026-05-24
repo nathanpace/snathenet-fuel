@@ -82,7 +82,7 @@ Click on a row to view or hide the list of exchanges in that area.
 				</td>
 				<td class="variable font12"><?=$exchange['ID'];?>
 				<td class="variable font12"><?=$exchange['NetworkInfo']['Zone'] . "<br/>" .$exchange['NetworkInfo']['District'];?></td>
-				<td class="variable font12"><?=$exchange['Postcode'];?></td>
+				<td class="variable font12"><?=$exchange['MapLink'];?></td>
 				<?php if (in_array("Sector", $area['Exchanges']['Fields'])) : ?>
 				<td class="variable font12"><?=$exchange['Sector'];?></td>
 				<?php 

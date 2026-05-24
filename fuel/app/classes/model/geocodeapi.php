@@ -8,12 +8,11 @@
  */
 namespace Model;
 
+use \Utils;
+
 class GeocodeAPI extends \ApiRequest 
 {
-	
-	// Base Map URL, for formatting Openmap links
-	const MAP_URL = "https://www.openstreetmap.org/?mlat=*LAT*&mlon=*LONG*#map=13/*LAT*/*LONG*";
-	
+		
 	// Determines if supplied data is a postcode
 	private $isPostcode;
 	
@@ -36,39 +35,12 @@ class GeocodeAPI extends \ApiRequest
 		parent::__construct(getenv("GEOCODE_API_URL"));
 
 		// Check if this is a postcode to be searched
-		$this->isPostcode = $this->checkIfPostcode($query);
+		$this->isPostcode = \Utils::isUKPostcode($query); //$this->checkIfPostcode($query);
 		
 		// Get data from API
 		$this->details = $this->retrieveDataFromApi($query);
 	}
-	
-	/**
-	 * @function checkIfPostcode
-	 * @description checks if the supplied parameter matches a correct postcode format
-	 * 				Does not check validity of actual postcode though
-	 * 
-	 * @access private
-	 * 
-	 * @param string $query the parameter to check
-	 * 
-	 * @return boolean
-	 * 
-	 */
-	private function checkIfPostcode($query)
-	{
-		// Remove all whitespace
-		$query = preg_replace('/\s/', '', $query);
-	 
-		// Make uppercase
-		$query = strtoupper($query);
-	 
-		// Return outcome of match attempt
-		return (preg_match("/^[A-Z]{1,2}[0-9]{2,3}[A-Z]{2}$/",$query)
-			|| preg_match("/^[A-Z]{1,2}[0-9]{1}[A-Z]{1}[0-9]{1}[A-Z]{2}$/",$query)
-			|| preg_match("/^GIR0[A-Z]{2}$/", $query));
-	}
-	
-	
+		
 	/**
 	 * @function retrieveDataFromApi
 	 * @description Gets data from API, does some extra processing once retrieved
@@ -152,7 +124,7 @@ class GeocodeAPI extends \ApiRequest
 			// Add some extra fields here
 			$data[$apiKey]['placeid'] = $this->generatePlaceId($newData['name_1'], $newData['outcode'], $this->isPostcode);
 			$data[$apiKey]['latlong'] = "{$newData['latitude']}, {$newData['longitude']}";
-			$data[$apiKey]['maplink'] = $this->generateMapLink($newData['latitude'], $newData['longitude']);
+			$data[$apiKey]['maplink'] = \Utils::createMapLink([$newData['latitude'], $newData['longitude']]);
 			$data[$apiKey]['isPostcode'] = $this->isPostcode;
 		}
 		
@@ -182,7 +154,12 @@ class GeocodeAPI extends \ApiRequest
 		$replacements = [$lat, $long];
 		
 		// Replace placeholders in class map URL constant with supplied params
-		return str_replace($placeholders, $replacements, self::MAP_URL);
+		$link = str_replace($placeholders, $replacements, self::MAP_URL);
+
+		// Create link text
+		$text = "";
+
+		return \Html::anchor($link, $postcode, ['target' => '_blank']);
 	}
 	
 	/**

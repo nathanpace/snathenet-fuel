@@ -18,6 +18,7 @@ require COREPATH.'bootstrap.php';
 	'DotEnv' => APPPATH . 'classes/lib/dotenv.php',
 	'MyLog' => APPPATH . 'classes/lib/log.php',
 	'ApiRequest' => APPPATH . 'classes/lib/apirequest.php',
+	'Utils' => APPPATH . 'classes/lib/utils.php',
 ));
 
 // Register the autoloader

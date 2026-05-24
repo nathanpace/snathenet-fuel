@@ -8,6 +8,7 @@
 namespace Model;
 
 use \DB;
+use \Utils;
 
 class Phonecodes extends \Model 
 {
@@ -196,6 +197,7 @@ class Phonecodes extends \Model
 					'District' => substr($networkInfo[1], 0, -5),
 				],
 				'Postcode' => $exchg['Postcode'],
+				'MapLink' => \Utils::createMapLink($exchg['Postcode']),
 				'STDCode' => $exchg['STDCode'],
 				'Range' => $exchg['Range'],
 				'Sector' => $exchg['Sector'],
@@ -347,6 +349,7 @@ class Phonecodes extends \Model
 					'District' => substr($networkInfo[1], 0, -5),
 				],
 				'Postcode' => $exchg['Postcode'],
+				'MapLink' => \Utils::createMapLink($exchg['Postcode']),
 				'STDCode' => $exchg['STDCode'],
 				'Range' => $exchg['Range'],
 				'Sector' => $exchg['Sector'],
@@ -643,7 +646,7 @@ class Phonecodes extends \Model
 					'District' => substr($networkInfo[1], 0, -5),
 				],
 				'Postcode' => $exchg['Postcode'],
-                
+                'MapLink' => \Utils::createMapLink($exchg['Postcode']),
                 // Format the sector appropriately
 				'Sector' => $this->formatSector($exchg['Sector'], $groupType),
 				'OriginalCode' => $exchg['OriginalSTDCode'],

@@ -65,7 +65,7 @@ Exchange Count: <?=$resultCount['exchanges'];?><br/>
 			</td>
 			<td class="variable font12"><?=$exchange['ID'];?>
 			<td class="variable font12"><?=$exchange['NetworkInfo']['Zone'] . "<br/>" .$exchange['NetworkInfo']['District'];?></td>
-			<td class="variable font12"><?=$exchange['Postcode'];?></td>
+			<td class="variable font12"><?=$exchange['MapLink'];?></td>
 			<?php if(array_key_exists("Sector", $exchange)) : ?>
 			<td class="variable font12"><?=$exchange['Sector'];?></td>
 			<?php else : ?>

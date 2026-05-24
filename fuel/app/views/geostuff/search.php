@@ -27,7 +27,7 @@
 		<td class="variable"><?=$placeInfo['geocode']['name_1'];?>
 			<?php if ($placeInfo['geocode']['isPostcode'] === false) : ?><br>[<?=$placeInfo['geocode']['outcode'];?>] <?php endif; ?>
 		</td>
-		<td><a href="<?=$placeInfo['geocode']['maplink'];?>" target="_blank"><?=$placeInfo['geocode']['latlong'];?></a></td>
+		<td><?=$placeInfo['geocode']['maplink'];?></td>
         <td class="variable"><?=$placeInfo['weather_1'];?><br/><?=$placeInfo['weather_2'];?></td>
         <td><?=$placeInfo['offset']['diff'] . " " . $placeInfo['offset']['direction'];?></td>
 		<td><span id="<?=$placeId;?>"></span></td>
