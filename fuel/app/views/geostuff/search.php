@@ -1,5 +1,5 @@
 <?php if (count($data) === 0) : ?>
-	<h5>Sorry, no matching location found.</h5>
+	<div class="h5">Sorry, no matching location found.</div>
 <?php else : ?>
 
 <table>	

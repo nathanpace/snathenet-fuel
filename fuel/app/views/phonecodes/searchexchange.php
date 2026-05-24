@@ -1,5 +1,5 @@
 <hr/>
-<h4>Search results for "<?=$searchTerm;?>" in <?=$searchType;?>:</h4>
+<div class="h4">Search results for "<?=$searchTerm;?>" in <?=$searchType;?>:</div>
 On any row, clicking the current STD code will perform a search on that code.
 <p></p>
 <table id="exchangelist" class="display">

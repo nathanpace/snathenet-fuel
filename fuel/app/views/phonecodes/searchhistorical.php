@@ -1,5 +1,5 @@
 <hr/>
-<h4>Search results for "<?=$searchTerm;?>" in historical info:</h4>
+<div class="h4">Search results for "<?=$searchTerm;?>" in historical info:</div>
 
 <p><i><b>NB</b> The code(s) returned here may not initially match the code searched, this usually means the code searched for was the result of a move from an earlier code and the code searched for will be shown in the "Code Moved To" column.</i>
 </p> 
@@ -39,7 +39,7 @@ Code Count: <?=$resultCount['codes'];?><br/>
 <?php if ($resultCount['exchanges'] > 0) : ?>
 Exchange Count: <?=$resultCount['exchanges'];?><br/>
 <p></p>
-<table border="1" id="histexchangelist" class="display">
+<table id="histexchangelist" class="display">
 	<thead>
 		<tr>
 			<th id="h-he-prev-codes">Previous<br/>STD&nbsp;code(s)</th>

@@ -678,7 +678,9 @@ class Phonecodes extends \Model
 	 */
 	private function formatRoutingSector($sector)
 	{
-		$sector = strtoupper($sector);
+		if (empty($ector)) {
+			return null;
+		}
 
 		$routingMap = [
 			"C" => "Central",
@@ -691,7 +693,7 @@ class Phonecodes extends \Model
 			"W" => "West",
 		];
 
-		if (array_key_exists($sector, $routingMap)) {
+		if (array_key_exists(strtoupper($sector), $routingMap)) {
 			return $routingMap[$sector];
 		}
 

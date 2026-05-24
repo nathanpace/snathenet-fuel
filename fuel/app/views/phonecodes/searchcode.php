@@ -1,5 +1,5 @@
 <hr/>
-<h4>Search results for "<?=$searchTerm;?>" in <?=$searchType;?>:</h4>
+<div class="h4">Search results for "<?=$searchTerm;?>" in <?=$searchType;?>:</div>
 
 Click on a row to view or hide the list of exchanges in that area.
 <p></p>
@@ -48,11 +48,11 @@ Click on a row to view or hide the list of exchanges in that area.
 ?>
 <div id="exchanges-<?=$area['STDCode'];?>-<?=$area['NameClean'];?>">
 	<?php if (count($area['Exchanges']['List']) === 0) : ?>
-	<h4>Exchange information for the <?=$area['STDCode'] . " " .$area['Name'];?> area is currently unavailable.</h4>
+	<div class="h4">Exchange information for the <?=$area['STDCode'] . " " .$area['Name'];?> area is currently unavailable.</div>
 	<?php else : ?>
 	<hr/>
-	<h4>The <?=$area['Exchanges']['Count'];?> exchange<?=$area['Exchanges']['Count'] > 1?"s":"";?> in the <?=$area['STDCode'] . " " .$area['Name'];?> area:</h4>
-	<table border="1" class="display">
+	<div class="h4">The <?=$area['Exchanges']['Count'];?> exchange<?=$area['Exchanges']['Count'] > 1?"s":"";?> in the <?=$area['STDCode'] . " " .$area['Name'];?> area:</div>
+	<table class="display">
 		<thead>
 			<tr>
 				<th id="h-e-prev-codes">Previous<br/>STD&nbsp;code(s)</th>

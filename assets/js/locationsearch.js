@@ -1,4 +1,6 @@
 $(document).ready(function () {
+	$('.formelement').css({'clear': 'inline-end'});
+
 	$("form").submit(function (event) {
 	
 		var formData = {
@@ -13,6 +15,7 @@ $(document).ready(function () {
 		  encode: true,
 		}).done(function (data) {
 		  $('#search-results').html(data);
+		  $('#search-results').addClass("geosearchresults");
 		});
 
 		event.preventDefault();

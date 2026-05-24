@@ -67,12 +67,13 @@ function doSearch(formData)
 
 // Initialise page 
 $(document).ready(function () {
+	$('.formelement').css({'clear': 'inline-start'});
 	$('#submitsearch').prop('disabled', true);
     $('#searchterm').keyup(function() {
         if($(this).val() != '') {
            $('#submitsearch').prop('disabled', false);
         }
-     });
+    });
 
 	// Form submission event
 	$("form").submit(function (event) {
@@ -138,7 +139,7 @@ $(document).on("click", "#about", function(e) {
 });
 
 // Action when a heading is clicked on the about screen
-$(document).on("click", "h5[id*='about-']", function(e) {
+$(document).on("click", ".h5[id*='about-']", function(e) {
 	
 	// Get ID of the clicked row
 	var id = $(this).attr('id');

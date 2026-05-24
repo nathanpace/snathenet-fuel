@@ -3,7 +3,11 @@ header {
 	font-size: 48px;
 	height: 75px;
 	width: 100%;
+	position: sticky;
+	top: 0;
+	z-index: 999;
 }
+
 a {
 	color: #883ced;
 }
@@ -50,7 +54,7 @@ th {
 	cursor: pointer;
 }
 
-h5[id*='about-'] {
+.h5[id*='about-'] {
 	cursor: pointer;
 }
 
@@ -58,6 +62,10 @@ td {
 	font-family: "Lucia Console", monospace;
 	font-size: 12px;
 	padding: 3px;
+}
+
+td a { 
+	display: block; width: 100%; height: 100%; 
 }
 
 .variable {
@@ -82,12 +90,24 @@ td {
 	margin-right: 7%;
 }
 
+.content {
+	margin-top: 10px;
+}
+
+.para {
+	margin-top: 25px;
+}
+
 .fullwidth {
 	width: 85%;
 }
 
-.selected {
-	background-color: #EEDDCC;
+.selected tr{
+	background-color: #EEDDCC !important;
+}
+
+.row_selected tr{
+	background-color: #EEDDCC !important;
 }
 
 .errormessage {
@@ -110,4 +130,31 @@ div.dt-container {
 	color: #333333;
 	text-decoration: none;
 	cursor:pointer;
+}
+
+.tt {
+	font-family: "Lucia Console", monospace;
+}
+
+.geosearchresults {
+	margin-top: 30px;
+}
+
+.formcontainer {
+	margin-bottom: 25px;
+}
+
+.formelement {
+	float: left; 
+	display: inline;
+	padding-right: 5px;
+}
+
+.italic {
+	font-style: italic;
+}
+
+/* Datatables padding for the "entries per page */
+label[for*='dt-length-'] {
+	padding-left: 5px;
 }

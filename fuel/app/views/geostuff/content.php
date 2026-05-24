@@ -1,10 +1,10 @@
 		<div class="row">
 			<div class="col-md-12">
-				<br/>
-				<h2>Geostuff</h2>
-				<br/>
-				It is currently <b><span id="current"></span> (<?=$todayGmtBst;?>)</b> here in the UK.
-				<script>new showLocalTime('current','<?=$currentTime;?>', 0, 'long');</script>
+				<div>
+					<div class="h2">Geostuff</div>
+					It is currently <b><span id="current"></span> (<?=$todayGmtBst;?>)</b> here in the UK.
+					<script>new showLocalTime('current','<?=$currentTime;?>', 0, 'long');</script>
+				</div>
 				<hr>
 				<div id="static-table">
 					<table>
@@ -45,13 +45,14 @@
 							<?php endif; ?>
 						</tr>
 						<?php if (!array_key_exists('error', $placeInfo)) : ?>
-						<script type="text/javascript">new showLocalTime("<?=$placeId;?>","<?=$currentTime;?>","<?=$placeInfo['offset']['total_mins'];?>","short");</script>
+						<script>new showLocalTime("<?=$placeId;?>","<?=$currentTime;?>","<?=$placeInfo['offset']['total_mins'];?>","short");</script>
 						<?php endif;?>
 						<?php endforeach; ?>
 					</table>
 					<br>
 				</div>
 				<hr>
+				<div>
 				<?php
 					// Search form
 					// Defined in presenter/geostuff/content.php
@@ -60,12 +61,14 @@
 					echo $searchForm->field('submitsearch')->build();
 					echo Form::close();
 				?>
+				</div>
 				<br>
 				<div id="search-results">
 					<!-- search results will populate in here via AJAX -->
 				</div>
 				<br>
-				<div style="font-style: italic">
+				<hr>
+				<div class="italic">
 					All place data uses the <a href="https://postcodes.io/" target="_blank">Postcodes.io</a> API to determine geocode information. | Map links use <a href="https://openstreetmap.org" target="_blank">OpenStreetMap</a> data | Weather data provided by <a href="https://openweathermap.org/" target="_blank">OpenWeather</a>.
 					<br>
 					Sunrise/sunset times are in UK GMT/BST, not local time.
