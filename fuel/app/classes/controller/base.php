@@ -25,10 +25,43 @@ class Controller_Base extends Controller_Template
 	private $defaultTitle = "snathe.net - PHP developer in NW England for hire";
 	
 	// Default CSS files to be loaded
-	private $defaultCSS = ['bootstrap/bootstrap.css', 'snathe.css'];
+	private $defaultCSS = ['bootstrap/bootstrap.css', 'font-awesome/css/font-awesome.min.css','snathe.css'];
 
 	// Default JS files to be loaded
-	private $defaultJS = ['https://ajax.googleapis.com/ajax/libs/jquery/3.7.1/jquery.min.js'];
+	private $defaultJS = ['https://ajax.googleapis.com/ajax/libs/jquery/3.7.1/jquery.min.js','base.js'];
+
+	// Internal site menu for dropdown
+	private $siteMenuInternal = [
+		"/" => "Home",
+		"geostuff" => "Geostuff",
+		"phonecodes" => "STD code search",
+	];
+
+	// External site menu for dropdown
+	private $siteMenuExternal = [
+		[
+			'link' => 'assets/downloads/cv.pdf',
+			'text' => "Download my CV",
+			'attrs' => [
+				'download' => 'cv',
+				'target' => '_blank',
+			]
+		],
+		[
+			'link' => 'https://www.linkedin.com/in/nathan-pace-php-developer-nw-eng/',
+			'text' => "My LinkedIn profile",
+			'attrs' => [
+				'target' => '_blank',
+			]
+		],
+		[
+			'link' => 'https://github.com/nathanpace',
+			'text' => "My Github page",
+			'attrs' => [
+				'target' => '_blank',
+			]
+		],
+	];
 
 	/**
 	 * The 404 action for the application.
@@ -106,6 +139,32 @@ class Controller_Base extends Controller_Template
 	 */
 	private function setHeader($data = null)
 	{
+		// Initialise variables on data array
+		$data['siteMenuInternal'] = "";
+		$data['siteMenuExternal'] = "";
+
+		// Iterate over internal site menu links in the class
+		foreach ($this->siteMenuInternal as $link => $text) {
+			$class = "menu-item";
+			
+			// Add bold class if the link matches the current page
+			if (Uri::string() === $link) {
+				$class .= " bold";
+			}
+
+			// Generate link and add to internal site menu text
+			$data['siteMenuInternal'] .= Html::anchor($link, $text, ['class' => $class]);
+		}
+
+		// Do the same for external links
+		foreach ($this->siteMenuExternal as $link) {
+			// Add the class to the attrs array
+			$link['attrs']['class'] = "menu-item";
+
+			// Generate link and add to external site menu text
+			$data['siteMenuExternal'] .= Html::anchor($link['link'], $link['text'], $link['attrs']);
+		}	
+
 		// Forge view, add data
 		$this->template->header = View::forge('base/header', $data);
 	}

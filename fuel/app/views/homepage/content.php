@@ -2,7 +2,7 @@
 			<div class="col-md-12">
 				<div>
 					<div class="h2">Hi there! I'm Nathan!</div>
-					<div class="h3 italic">I'm a <?=$age;?> year old PHP developer in Liverpool, NW England, UK, currently looking for work (ideally remote/remote first or hybrid).</div>
+					<div class="h3">I'm a <?=$age;?> year old PHP developer in Liverpool, NW England, UK, currently looking for work<br><span class="italic">(ideally remote/remote first or hybrid)</span>.</div>
 				</div>
 				<div class="para">
 					<div class="h4 italic">What do I do?</div>
