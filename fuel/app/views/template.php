@@ -10,7 +10,7 @@
 	<!-- Header -->
 	<?=$header;?>
 	</header>
-	<div class="container resized fullwidth">
+	<div class="container resized fullwidth" id="body-content">
 		<!-- Main content -->
 		<?=$body;?>
 		<hr>

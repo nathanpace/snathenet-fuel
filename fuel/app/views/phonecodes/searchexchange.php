@@ -21,25 +21,25 @@ On any row, clicking the current STD code will perform a search on that code.
 	<tbody>
 	<?php foreach ($results as $i => $exchange) : ?>
 		<tr class="<?=$i%2==0?'even':'odd'?>" id="<?=$exchange['ID'];?>">
-			<td class="variable font12"><?=str_replace("/", ", ", $exchange['OriginalCode']);?></td>
-			<td class="variable font12" id="r-ex-<?=$exchange['STDCode'];?>"><?=$exchange['STDCode'];?></td>
+			<td class="font12"><?=str_replace("/", ", ", $exchange['OriginalCode']);?></td>
+			<td class="font12" id="r-ex-<?=$exchange['STDCode'];?>"><?=$exchange['STDCode'];?></td>
 			<td class="variable font12"><?=$exchange['Name'];?>
 			<?=array_key_exists('AltName', $exchange)?"<br/>(" . $exchange['AltName'] . ")":"";?>
 			</td>
 			<td class="variable font12"><?=$exchange['ID'];?>
 			<td class="variable font12"><?=$exchange['NetworkInfo']['Zone'] . "<br/>" .$exchange['NetworkInfo']['District'];?></td>
-			<td class="variable font12"><?=$exchange['MapLink'];?></td>
+			<td class="font12"><?=$exchange['MapLink'];?></td>
 			<?php if(array_key_exists("Sector", $exchange)) : ?>
-			<td class="variable font12"><?=$exchange['Sector'];?></td>
+			<td class="font12"><?=$exchange['Sector'];?></td>
 			<?php else : ?>
-			<td class="variable font12">N/A</td>
+			<td class="font12">N/A</td>
 			<?php	 
 				endif;
 				if (array_key_exists("AdditionalInfo", $exchange)) : 
 			?>
-			<td class="variable font12"><?=$exchange['AdditionalInfo']['preAFNCode'];?></td>
-			<td class="variable font12"><?=$exchange['AdditionalInfo']['postAFNCode'];?></td>
-			<td class="variable font12"><?=empty($exchange['AdditionalInfo']['afnRoutingSector'])?$exchange['Sector']:$exchange['AdditionalInfo']['afnRoutingSector'];?></td>
+			<td class="font12"><?=$exchange['AdditionalInfo']['preAFNCode'];?></td>
+			<td class="font12"><?=$exchange['AdditionalInfo']['postAFNCode'];?></td>
+			<td class="font12"><?=empty($exchange['AdditionalInfo']['afnRoutingSector'])?$exchange['Sector']:$exchange['AdditionalInfo']['afnRoutingSector'];?></td>
 			<td class="variable font12"><?=$exchange['AdditionalInfo']['notes'];?></td>
 			<?php else : ?>
 			<td class="variable font12">N/A</td>

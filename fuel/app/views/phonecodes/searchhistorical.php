@@ -22,14 +22,14 @@ Code Count: <?=$resultCount['codes'];?><br/>
 	<tbody>
 <?php foreach ($results['Codes'] as $i => $area) : ?>
 		<tr class="<?=$i%2==0?'even':'odd'?>" id="<?=$area['STDCode'];?>-<?=$area['NameClean'];?>">
-			<td class="variable font12"><b><?=$area['STDCode'];?></b></td>
+			<td class="font12"><b><?=$area['STDCode'];?></b></td>
 			<td class="variable font12"><b><?=$area['Name'];?></b></td>
 			<td class="variable font12"><?=$area['GroupType'];?></td>
-			<td class="variable font12"><?=$area['Mapping'];?></td>
+			<td class="font12"><?=$area['Mapping'];?></td>
 			<td class="variable font12"><?=$area['MappingReason'];?></td>
-			<td class="variable font12"><?=$area['Routing'];?></td>
-			<td class="variable font12"><?=$area['MovedFrom'];?>
-			<td class="variable font12"><?=$area['MovedTo'];?></td>
+			<td class="font12"><?=$area['Routing'];?></td>
+			<td class="font12"><?=$area['MovedFrom'];?>
+			<td class="font12"><?=$area['MovedTo'];?></td>
 			<td class="variable font12"><?=$area['OtherNotes'];?></td>
 		</tr>
 <?php endforeach;?>
@@ -58,25 +58,25 @@ Exchange Count: <?=$resultCount['exchanges'];?><br/>
 	<tbody>
 	<?php foreach ($results['Exchanges'] as $i => $exchange) : ?>
 		<tr class="<?=$i%2==0?'even':'odd'?>" id="<?=$exchange['ID'];?>">
-			<td class="variable font12"><?=str_replace("/", ", ", $exchange['OriginalCode']);?></td>
-			<td class="variable font12" id="r-ex-<?=$exchange['STDCode'];?>"><?=$exchange['STDCode'];?></td>
+			<td class="font12"><?=str_replace("/", ", ", $exchange['OriginalCode']);?></td>
+			<td class="font12" id="r-ex-<?=$exchange['STDCode'];?>"><?=$exchange['STDCode'];?></td>
 			<td class="variable font12"><?=$exchange['Name'];?>
 			<?=array_key_exists('AltName', $exchange)?"<br/>(" . $exchange['AltName'] . ")":"";?>
 			</td>
 			<td class="variable font12"><?=$exchange['ID'];?>
 			<td class="variable font12"><?=$exchange['NetworkInfo']['Zone'] . "<br/>" .$exchange['NetworkInfo']['District'];?></td>
-			<td class="variable font12"><?=$exchange['MapLink'];?></td>
+			<td class="font12"><?=$exchange['MapLink'];?></td>
 			<?php if(array_key_exists("Sector", $exchange)) : ?>
-			<td class="variable font12"><?=$exchange['Sector'];?></td>
+			<td class="font12"><?=$exchange['Sector'];?></td>
 			<?php else : ?>
 			<td class="variable font12">N/A</td>
 			<?php	 
 				endif;
 				if (array_key_exists("AdditionalInfo", $exchange)) : 
 			?>
-			<td class="variable font12"><?=$exchange['AdditionalInfo']['preAFNCode'];?></td>
-			<td class="variable font12"><?=$exchange['AdditionalInfo']['postAFNCode'];?></td>
-			<td class="variable font12"><?=empty($exchange['AdditionalInfo']['afnRoutingSector'])?$exchange['Sector']:$exchange['AdditionalInfo']['afnRoutingSector'];?></td>
+			<td class="font12"><?=$exchange['AdditionalInfo']['preAFNCode'];?></td>
+			<td class="font12"><?=$exchange['AdditionalInfo']['postAFNCode'];?></td>
+			<td class="font12"><?=empty($exchange['AdditionalInfo']['afnRoutingSector'])?$exchange['Sector']:$exchange['AdditionalInfo']['afnRoutingSector'];?></td>
 			<td class="variable font12"><?=$exchange['AdditionalInfo']['notes'];?></td>
 			<?php else : ?>
 			<td class="variable font12">N/A</td>
