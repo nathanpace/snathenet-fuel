@@ -54,14 +54,14 @@ class Controller_Homepage extends Controller_Base
 	 * @return  phpinfo
 	 */
 	public function action_info()
-	{
-		// Get home IP addres from env file
-		$homeIP = getenv('HOME_IP');
-	
+	{	
 		// Return not found if not localhost or home IP
-		if (in_array(Input::ip(), ['127.0.0.1', $homeIP]) === false) {
-			return Response::forge(View::forge('homepage/goaway'), 404);
+		if (in_array(Input::ip(), ['127.0.0.1', getenv('HOME_IP')]) === false) {
+			return $this->show404();
 		}
+
+		// Ignore the base template here
+		$this->ignoreBaseTemplate();
 
 		// Show environment value, phpini values and phpinfo 
 		echo (\Fuel::$env . "<br>");

@@ -197,4 +197,20 @@ class Controller_Base extends Controller_Template
 		$this->template->footer = View::forge('base/footer', $data);
 	}
 
+	/**
+	 * @function ignoreBaseTemplate
+	 * 
+	 * @description Sets all variables in the base temaplte to null
+	 * 
+	 * @access public
+	 * 
+	 * @return void
+	 */
+	public function ignoreBaseTemplate()
+	{
+		$this->template->pageHead = null;
+		$this->template->header = null;
+		$this->template->body = null;
+		$this->template->footer = null;
+	}
 }
