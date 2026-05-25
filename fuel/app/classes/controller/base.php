@@ -71,7 +71,8 @@ class Controller_Base extends Controller_Template
 	 */
 	public function action_404()
 	{
-		return Response::forge(Presenter::forge('base/404'), 404);
+		// Wrapper function for the 404 code
+		return $this->show404();
 	}
 
 	/**
@@ -82,7 +83,7 @@ class Controller_Base extends Controller_Template
 	 * 
 	 * @return void
 	 */
-	protected function setPageAttributes($attrs) 
+	protected function setPageAttributes($attrs = []) 
 	{
 		// Build up the data array to be passed to the view
 		$data = [
@@ -125,7 +126,16 @@ class Controller_Base extends Controller_Template
 	 */
 	protected function show404()
 	{
-		return Response::forge(Presenter::forge('base/404'), 404);
+		// Use default page attributes
+		$this->setPageAttributes();
+
+		// Forge 404 content and set in base template
+		$this->setContent([
+			'body' => Presenter::forge('base/404')
+		]);
+
+		// Return the forged response here with a 404 status
+		return Response::forge($this->template, 404);
 	}
 
 
