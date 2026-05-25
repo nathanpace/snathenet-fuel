@@ -4,5 +4,6 @@
 		</div>
 		<div id="menu-header-dropdown" class="pull-right">
 			<?=$siteMenuInternal;?>
+			<div class="menu-separator"></div>
 			<?=$siteMenuExternal;?>
 		</div>

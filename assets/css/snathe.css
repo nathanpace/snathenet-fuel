@@ -195,6 +195,11 @@ label[for*='dt-length-'] {
 	color:black;
 }
 
+.menu-separator {
+	border:1px solid black;
+	border-collapse:collapse;
+}
+
 .bold {
 	font-weight: bold;
 }
