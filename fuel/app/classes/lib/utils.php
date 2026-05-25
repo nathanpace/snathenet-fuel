@@ -12,7 +12,7 @@ class Utils {
      * @access public
      * @param mixed $data the data to build the link from. Can be a string (postcode) or aray (lat/long coords)
      * 
-     * @return string|null HTML link if matching format found, else null
+     * @return string HTML link if matching format found, else "Unavailable"
      */
     public static function createMapLink($data)
     {
@@ -26,8 +26,8 @@ class Utils {
             return self::createMapLinkFromPostcode($data);
         }
 
-        // No matches for data found, return null
-        return null;
+        // No matches for data found, return "Unavailable"
+        return "Unavailable";
     }
 
     /**
