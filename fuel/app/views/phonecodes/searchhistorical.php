@@ -43,7 +43,7 @@ Exchange Count: <?=$resultCount['exchanges'];?><br/>
 	<thead>
 		<tr>
 			<th id="h-he-prev-codes">Previous<br/>STD&nbsp;code(s)</th>
-			<th id="h-he-curret-codes">Current<br/>STD&nbsp;code</th>
+			<th id="h-he-current-codes">Current<br/>STD&nbsp;code</th>
 			<th id="h-he-name">Exchange Name(s)</th>
 			<th id="h-he-id">Exchange ID</th>
 			<th id="h-he-zone-district">Network Zone<br/>Network District</th>
@@ -66,14 +66,8 @@ Exchange Count: <?=$resultCount['exchanges'];?><br/>
 			<td class="variable font12"><?=$exchange['ID'];?>
 			<td class="variable font12"><?=$exchange['NetworkInfo']['Zone'] . "<br/>" .$exchange['NetworkInfo']['District'];?></td>
 			<td class="font12"><?=$exchange['MapLink'];?></td>
-			<?php if(array_key_exists("Sector", $exchange)) : ?>
-			<td class="font12"><?=$exchange['Sector'];?></td>
-			<?php else : ?>
-			<td class="variable font12">N/A</td>
-			<?php	 
-				endif;
-				if (array_key_exists("AdditionalInfo", $exchange)) : 
-			?>
+			<td class="font12"><?=$exchange['Sector'] ?? 'N/A';?></td>
+			<?php if (array_key_exists("AdditionalInfo", $exchange)) : ?>
 			<td class="font12"><?=$exchange['AdditionalInfo']['preAFNCode'];?></td>
 			<td class="font12"><?=$exchange['AdditionalInfo']['postAFNCode'];?></td>
 			<td class="font12"><?=empty($exchange['AdditionalInfo']['afnRoutingSector'])?$exchange['Sector']:$exchange['AdditionalInfo']['afnRoutingSector'];?></td>

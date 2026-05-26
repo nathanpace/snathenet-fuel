@@ -24,13 +24,7 @@ Click on a row to view or hide the list of exchanges in that area.
 		<tr class="<?=$i%2==0?'even':'odd'?>" id="<?=$area['STDCode'];?>-<?=$area['NameClean'];?>">
 			<td class="font12"><b><?=$area['STDCode'];?></b></td>
 			<td class="variable font12"><b><?=$area['Name'];?></b></td>
-			<td class="font12">
-			<?php if (array_key_exists('NumberRange', $area)) : ?>
-				<?=$area['NumberRange'];?>
-			<?php else : ?>
-				ALL
-			<?php endif; ?>
-			</td>
+			<td class="font12"><?=$area['NumberRange'] ?? 'ALL';?></td>
 			<td class="font12"><?=$area['Exchanges']['Count'];?></td>
 			<td class="variable font12"><?=$area['ChargeGroup']['Name'];?></td>
 			<td class="variable font12"><?=$area['ChargeGroup']['ID'];?></td>

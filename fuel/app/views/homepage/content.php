@@ -16,7 +16,7 @@
 				</div>
 				<div>
 					<b><i>My most recent role (June 2018 - November 2025)</i></b><br/>
-					Senior developer for <a href="https://www.elevensoftware.com/" target="_blank">Eleven Software</a> (previously Airangel, which was taken over by Eleven in 2023), initially based in Warrington and transferring to a fully remote role in 2020.
+					Senior developer for <a href="https://www.elevensoftware.com/" target="_blank">Eleven Software</a> <i>(previously Airangel, which was taken over by Eleven in 2023)</i>, initially based in Warrington and transferring to a <b>fully remote role</b> in 2020, working with teams based in Europe and the US.
 					<br/>
 					Here's some of the stuff I did during my time there:
 					<ul>
@@ -28,6 +28,8 @@
 						<li>Made use of AWS deployment tools for code rollouts via in-house developed release system.</li>
 						<li>Responsible for documentation of code and processes for users and developers, both in-code and using Confluence.</li>
 					</ul>
+
+					<i>For more about my work history, please <a href="https://www.linkedin.com/in/nathan-pace-php-developer-nw-eng/" target="_blank">view my LinkedIn profile</a> or <a href="assets/downloads/cv.pdf" download>download my current CV</a></i>.
 				</div>
 				<div class="para">
 					<div class="h4 italic">What else have I done recently?</div>
@@ -36,7 +38,7 @@
 						<li><a href='/geostuff'>Geostuff</a> - uses API calls and the PHP native <span class="tt">date_sun_info()</span> functions to give information about sunrise/sunset times and current weather in any GB postcode or UK place name.</li>
 						<li><a href='/phonecodes'>STD Code search</a> - searchable MySQL database of UK STD code and telephone exchange information.</li>
 					</ul>
-					There's also <a href="https://github.com/nathanpace" target="_blank">my Github page</a> for you to look at if you wish.
+					There's also <a href="https://github.com/nathanpace" target="_blank">my Github page</a> for you to look at if you wish - you'll find all the code for this website on there under the <a href="https://github.com/nathanpace/snathenet-fuel" target="_blank">snathenet-fuel</a> repo.
 				</div>
 				<div class="para">
 					<div class="h4 italic">What other stuff do I like to do?</div>
