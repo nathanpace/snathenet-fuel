@@ -2,11 +2,11 @@
 			<div class="col-md-12">
 				<div>
 					<div class="h2">Hi there! I'm Nathan!</div>
-					<div class="h3">I'm a <?=$age;?> year old PHP developer in Liverpool, NW England, UK, currently looking for work<br><span class="italic">(ideally remote/remote first or hybrid)</span>.</div>
+					<div class="h3">I'm a <?=$age;?> year old PHP developer based in Liverpool, NW England, UK, and I am currently available for work<br><span class="italic">(ideally remote/remote first or hybrid)</span>.</div>
 				</div>
 				<div class="para">
 					<div class="h4 italic">What do I do?</div>
-					Take a look at <a href="https://www.linkedin.com/in/nathan-pace-php-developer-nw-eng/" target="_blank">my LinkedIn profile</a> or <a href="assets/downloads/cv.pdf" download>download my current CV</a>, but if you want a very brief summary:
+					Please take a look at <a href="https://www.linkedin.com/in/nathan-pace-php-developer-nw-eng/" target="_blank">my LinkedIn profile</a> or <a href="assets/downloads/cv.pdf" download>download my current CV</a> for the full story, but if you want a very brief summary:
 					<ul>
 						<li><b>PHP</b>, mainly. I've worked with the language for about 25 years now, from writing bespoke code through to working with frameworks such as <b>Laravel</b> or <b>FuelPHP</b> - and I'm just as happy doing either.</li>
 						<li>I'm also happy to talk <b>SQL</b>, my preferences being either <b>PostgreSQL</b> or <b>MySQL</b>.</li>
@@ -46,9 +46,14 @@
 						<li>
 							<b>Quizzing</b>
 							<ul>
-								<li>I play in both the <a href="https://merseysidequizleagues.org.uk/" target="_blank">Merseyside Quiz League</a> and the <a href="https://quizcentral.net/qc/Online_Quiz_League_UK" target="_blank">Online Quiz League</a>.</li>
+								<li>I am an active member of two quiz leagues:
+									<ul>
+										<li>I play as part of the <i>Palmy Army</i> team in the <a href="https://merseysidequizleagues.org.uk/" target="_blank">Merseyside Quiz League</a><div class=""></div></li>
+										<li>I'm the captain of team <i>TOWIE</i> (no, nothing to do with the TV show!) in the <a href="https://quizcentral.net/qc/Online_Quiz_League_UK" target="_blank">Online Quiz League</a>.</li>
+									</ul>
+					</li>
 								<li>I run a weekly pub quiz at <a href="https://www.facebook.com/p/Heatons-Bridge-Inn-100057567694876/" target="_blank">The Heatons Bridge</a> in Scarisbrick.</li>
-								<li>I've even been on a few TV and Radio quizzes in the UK, including <b>Popmaster</b>, <b>Fifteen-To-One</b>, <b>Countdown</b> and <b>The Chase</b>.</li>
+								<li>I've even been on a few broadcast quizzes in the UK, including <b>Popmaster</b>, <b>Fifteen-To-One</b>, <b>Countdown</b> and <b>The Chase</b>.</li>
 							</ul>
 						</li>
 						<li>
