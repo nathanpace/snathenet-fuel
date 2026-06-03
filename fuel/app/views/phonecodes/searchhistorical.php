@@ -58,13 +58,13 @@ Exchange Count: <?=$resultCount['exchanges'];?><br/>
 	<tbody>
 	<?php foreach ($results['Exchanges'] as $i => $exchange) : ?>
 		<tr class="<?=$i%2==0?'even':'odd'?>" id="<?=$exchange['ID'];?>">
-			<td class="font12"><?=str_replace("/", ", ", $exchange['OriginalCode']);?></td>
+			<td class="font12"><?=str_replace("/", "<br>", $exchange['OriginalCode']);?></td>
 			<td class="font12" id="r-ex-<?=$exchange['STDCode'];?>"><?=$exchange['STDCode'];?></td>
 			<td class="variable font12"><?=$exchange['Name'];?>
 			<?=array_key_exists('AltName', $exchange)?"<br/>(" . $exchange['AltName'] . ")":"";?>
 			</td>
 			<td class="variable font12"><?=$exchange['ID'];?>
-			<td class="variable font12"><?=$exchange['NetworkInfo']['Zone'] . "<br/>" .$exchange['NetworkInfo']['District'];?></td>
+			<td class="variable font12"><?=$exchange['NetworkInfo']['Zone'] . "<br>" .$exchange['NetworkInfo']['District'];?></td>
 			<td class="font12"><?=$exchange['MapLink'];?></td>
 			<td class="font12"><?=$exchange['Sector'] ?? 'N/A';?></td>
 			<?php if (array_key_exists("AdditionalInfo", $exchange)) : ?>
