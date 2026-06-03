@@ -68,37 +68,7 @@ class Phonecodes extends \Model
 		'0940' => '09467',
 	];
 
-	// 00xx code mappings
-	// Value is the code they were moved to
-	private $mapping00xxCodes =  [
-		'0022' => '0301',
-		'0023' => '0572',
-		'0024' => '0631',
-		'0025' => '0866',
-		'0027' => '0852',
-		'0040' => '0850',
-		'0041' => '0851',
-		'0042' => '0656',
-		'0046' => '0859',
-		'0047' => '0871',
-		'0052' => '0837',
-		'0055' => '0651',
-		'0062' => '0855',
-		'0063' => '0662',
-		'0072' => '0689',
-		'0073' => '0691',
-		'0074' => '0695',
-		'0076' => '0856',
-		'0077' => '0857',
-		'0082' => '0832',
-		'0083' => '0959',
-		'0085' => '0801',
-		'0086' => '0830',
-		'0092' => '0865',
-		'0093' => '0883',
-		'0095' => '0869',
-		'0096' => '0867',
-	];
+
 
     /**
      * Constructor
@@ -303,20 +273,14 @@ class Phonecodes extends \Model
 				'Mapping' => $row['mapping'],
 				'MappingReason' => empty($row['mappingReason'])?$row['name']:$row['mappingReason'],
 				'Routing' => $this->formatRouting($row),
-				'MovedFrom' => empty($row['movedFrom']) ? "-":$row['movedFrom'],
-				'MovedTo' => empty($row['movedTo']) ? "-":$row['movedTo'],
+				'MovedFrom' => empty($row['movedFrom']) ? "-":$this->formatMovedCodes($row['movedFrom']),
+				'MovedTo' => empty($row['movedTo']) ? "-":$this->formatMovedCodes($row['movedTo']),
 				'OtherNotes' => empty($row['otherNotes']) ? "None":$row['otherNotes'],
 			];
 			$return['Codes'][] = $this->removeEmptyElements($tmp);
 		}
 
-		// Extra stage here: if the processed search is 00xx code
-		// look up the mapping to get the replacement for the exchange search
-		if (array_key_exists($processedSearch, $this->mapping00xxCodes)) {
-			$search = $this->mapping00xxCodes[$processedSearch];
-		}
-
-		// Do the same for the mixed 5+5 (non-NI) areas but use the original search
+		// Extra stage here: check mixed 5+5 (non-NI) areas but use the original search
 		$mapped = array_search($search, $this->original5DigitGBCodes);
 
 		if ($mapped != false) {
@@ -406,8 +370,8 @@ class Phonecodes extends \Model
 				'Mapping' => $row['mapping'],
 				'MappingReason' => empty($row['mappingReason'])?$row['name']:$row['mappingReason'],
 				'Routing' => $this->formatRouting($row),
-				'MovedFrom' => empty($row['movedFrom']) ? "-":$row['movedFrom'],
-				'MovedTo' => empty($row['movedTo']) ? "-":$row['movedTo'],
+				'MovedFrom' => empty($row['movedFrom']) ? "-":$this->formatMovedCodes($row['movedFrom']),
+				'MovedTo' => empty($row['movedTo']) ? "-":$this->formatMovedCodes($row['movedTo']),
 				'OtherNotes' => empty($row['otherNotes']) ? "None":$row['otherNotes'],
 			];
 			$return['Codes'][] = $this->removeEmptyElements($tmp);
@@ -754,6 +718,26 @@ class Phonecodes extends \Model
 		return '';
 	}
 	
+	/**
+	 * @function formatMovedCodes
+	 * @description Adds span tags round "moved" codes so that they can be clicked
+	 * 
+	 * @access private
+	 * @param string $codes the codes to format
+	 * 
+	 * @return string formatted string of HTML tags
+	 */
+	private function formatMovedCodes($codes) {
+		$codeSpans = [];
+		$codes = explode("/", $codes);
+		foreach ($codes as $code) {
+			$codeSpans[] = html_tag('span', ['data-moved' => $code], $code);
+		}
+
+		// Add pipes between each span
+		return implode("|", $codeSpans);
+	}
+
 	/**
      *  @function cleanseName
      *  @description Cleanse non-alpha characters

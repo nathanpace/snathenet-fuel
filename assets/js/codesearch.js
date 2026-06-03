@@ -110,7 +110,7 @@ $(document).on("click", "#codelist tr", function(e) {
 
 // Action when a STD code is clicked on an exchange list
 $(document).on("click", "td[id*='r-ex-']", function(e) {
-	
+	console.log($(this));
 	event.preventDefault();
 	$('#searching').html("Searching...");
 	// Get text of clicked cell, this will be used as the search term
@@ -121,6 +121,23 @@ $(document).on("click", "td[id*='r-ex-']", function(e) {
 
 	// Call the search function
 	doSearch(formData);
+});
+
+// Action when a STD "moved" code is clicked
+$(document).on("click", "span[data-moved^='0']", function(e) {
+
+	event.preventDefault();
+	search = $(this).attr('data-moved').trim().split(/\s+/).at(0); 
+
+	// Get data value from element, this will be used as the search term
+	var formData = {
+		searchterm: search,
+		searchtype: 'historical',
+	};
+
+	// Call the search function
+	doSearch(formData);
+
 });
 
 // Action when help link is clicked

@@ -213,3 +213,8 @@ label[for*='dt-length-'] {
 .bold {
 	font-weight: bold;
 }
+
+[data-moved^='0']:hover, td[id*='r-ex-']:hover {
+	cursor:pointer;
+	text-decoration:underline;
+}

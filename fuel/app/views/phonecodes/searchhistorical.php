@@ -1,8 +1,7 @@
 <hr/>
 <div class="h4">Search results for "<?=$searchTerm;?>" in historical info:</div>
 
-<p><i><b>NB</b> The code(s) returned here may not initially match the code searched, this usually means the code searched for was the result of a move from an earlier code and the code searched for will be shown in the "Code Moved To" column.</i>
-</p> 
+<p><i>If there is a code shown in either the "Code Moved From" or "Code Moved To" column, click on it to perform a historical search in that code.</i></p> 
 Code Count: <?=$resultCount['codes'];?><br/>
 <p></p>
 <table id="histcodelist" class="display">
@@ -28,7 +27,7 @@ Code Count: <?=$resultCount['codes'];?><br/>
 			<td class="font12"><?=$area['Mapping'];?></td>
 			<td class="variable font12"><?=$area['MappingReason'];?></td>
 			<td class="font12"><?=$area['Routing'];?></td>
-			<td class="font12"><?=$area['MovedFrom'];?>
+			<td class="font12"><?=$area['MovedFrom'];?></td>
 			<td class="font12"><?=$area['MovedTo'];?></td>
 			<td class="variable font12"><?=$area['OtherNotes'];?></td>
 		</tr>
@@ -38,7 +37,7 @@ Code Count: <?=$resultCount['codes'];?><br/>
 
 <?php if ($resultCount['exchanges'] > 0) : ?>
 Exchange Count: <?=$resultCount['exchanges'];?><br/>
-<p></p>
+<p><i>Click on the current STD code to show all current information about that code.</i></p>
 <table id="histexchangelist" class="display">
 	<thead>
 		<tr>
