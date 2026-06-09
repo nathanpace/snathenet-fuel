@@ -57,7 +57,7 @@ Exchange Count: <?=$resultCount['exchanges'];?><br/>
 	<tbody>
 	<?php foreach ($results['Exchanges'] as $i => $exchange) : ?>
 		<tr class="<?=$i%2==0?'even':'odd'?>" id="<?=$exchange['ID'];?>">
-			<td class="font12"><?=str_replace("/", "<br>", $exchange['OriginalCode']);?></td>
+			<td class="font12"><?=str_replace("/", ",<br>", $exchange['OriginalCode']);?></td>
 			<td class="font12" id="r-ex-<?=$exchange['STDCode'];?>"><?=$exchange['STDCode'];?></td>
 			<td class="variable font12"><?=$exchange['Name'];?>
 			<?=array_key_exists('AltName', $exchange)?"<br/>(" . $exchange['AltName'] . ")":"";?>
