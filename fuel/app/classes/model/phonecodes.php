@@ -233,7 +233,7 @@ class Phonecodes extends \Model
 	}
     
     /**
-     *  @function gethistoricalCodeInfo
+     *  @function getHistoricalCodeInfo
      *  @descripton get historical information about the requested area code
      * 
      *  @access public
@@ -245,7 +245,8 @@ class Phonecodes extends \Model
 				
 		$return = [
 			'Codes' => [],
-			'Exchanges' => []
+			'Exchanges' => [],
+			'SearchType' => 'code',
 		];
 
 		// Firstly, we need to process the search term a bit
@@ -267,14 +268,15 @@ class Phonecodes extends \Model
 
             $tmp = [
 				'STDCode' => $row['code'], 
+				'STDCodeLink' => $row['code'],
 				'Name' => $row['name'],
 				'NameClean' => $this->cleanseName($row['name']),
 				'GroupType' => $this->formatGroupType($row['groupType']),
 				'Mapping' => $row['mapping'],
 				'MappingReason' => empty($row['mappingReason'])?$row['name']:$row['mappingReason'],
 				'Routing' => $this->formatRouting($row),
-				'MovedFrom' => empty($row['movedFrom']) ? "-":$this->formatMovedCodes($row['movedFrom']),
-				'MovedTo' => empty($row['movedTo']) ? "-":$this->formatMovedCodes($row['movedTo']),
+				'MovedFrom' => empty($row['movedFrom']) ? "-":$this->formatMovedCodesLink($row['movedFrom']),
+				'MovedTo' => empty($row['movedTo']) ? "-":$this->formatMovedCodesLink($row['movedTo']),
 				'OtherNotes' => empty($row['otherNotes']) ? "None":$row['otherNotes'],
 			];
 			$return['Codes'][] = $this->removeEmptyElements($tmp);
@@ -333,7 +335,7 @@ class Phonecodes extends \Model
 	
 
     /**
-     *  @function gethistoricalCodeInfo
+     *  @function getHistoricalNameInfo
      *  @descripton get historical code information about the requested name
      * 
      *  @access public
@@ -345,7 +347,8 @@ class Phonecodes extends \Model
 				
 		$return = [
 			'Codes' => [],
-			'Exchanges' => []
+			'Exchanges' => [],
+			'SearchType' => 'name',
 		];
 
 		// Firstly, we need to process the search term a bit
@@ -363,15 +366,16 @@ class Phonecodes extends \Model
 		foreach ($oldCodes as $row) {
 
             $tmp = [
-				'STDCode' => $row['code'], 
+				'STDCode' => $row['code'],
+				'STDCodeLink' => $this->formatCodeLink($row['code']), 
 				'Name' => $row['name'],
 				'NameClean' => $this->cleanseName($row['name']),
 				'GroupType' => $this->formatGroupType($row['groupType']),
 				'Mapping' => $row['mapping'],
 				'MappingReason' => empty($row['mappingReason'])?$row['name']:$row['mappingReason'],
 				'Routing' => $this->formatRouting($row),
-				'MovedFrom' => empty($row['movedFrom']) ? "-":$this->formatMovedCodes($row['movedFrom']),
-				'MovedTo' => empty($row['movedTo']) ? "-":$this->formatMovedCodes($row['movedTo']),
+				'MovedFrom' => empty($row['movedFrom']) ? "-":$this->formatMovedCodesLink($row['movedFrom']),
+				'MovedTo' => empty($row['movedTo']) ? "-":$this->formatMovedCodesLink($row['movedTo']),
 				'OtherNotes' => empty($row['otherNotes']) ? "None":$row['otherNotes'],
 			];
 			$return['Codes'][] = $this->removeEmptyElements($tmp);
@@ -719,7 +723,7 @@ class Phonecodes extends \Model
 	}
 	
 	/**
-	 * @function formatMovedCodes
+	 * @function formatMovedCodesLink
 	 * @description Adds span tags round "moved" codes so that they can be clicked
 	 * 
 	 * @access private
@@ -727,7 +731,7 @@ class Phonecodes extends \Model
 	 * 
 	 * @return string formatted string of HTML tags
 	 */
-	private function formatMovedCodes($codes) {
+	private function formatMovedCodesLink($codes) {
 		$codeSpans = [];
 		$codes = explode("/", $codes);
 		foreach ($codes as $code) {
@@ -736,6 +740,19 @@ class Phonecodes extends \Model
 
 		// Add pipes between each span
 		return implode("|", $codeSpans);
+	}
+
+	/**
+	 * @function formatCodeLink
+	 * @description Adds span tags round "moved" codes so that they can be clicked
+	 * 
+	 * @access private
+	 * @param string $codes the codes to format
+	 * 
+	 * @return string formatted string of HTML tags
+	 */
+	private function formatCodeLink($code) {
+		return html_tag('span', ['data-std-code' => $code], $code);
 	}
 
 	/**
@@ -821,8 +838,8 @@ class Phonecodes extends \Model
 
 				// Mapping found?
 				if ($mappedSearch !== false) {
-					// Return mapping
-					return $mappedSearch;
+					// Return search
+					return $search;
 				}
 
 				// Mapping not found, return first 4 characters of search

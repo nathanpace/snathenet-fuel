@@ -1,7 +1,17 @@
 <hr/>
 <div class="h4">Search results for "<?=$searchTerm;?>" in historical info:</div>
+<p>
+<?php if ($results['SearchType'] === 'code') : ?>
+	<i>If there is a code shown in either the "Code Moved From" or "Code Moved To" column, click on it to perform a historical search in that code.</i>
+<?php 
+	endif;
+	if ($results['SearchType'] === 'name') : 
+?> 
+<i>Click on the STD code to get historical information about that code.<br>If there is a code shown in either the "Code Moved From" or "Code Moved To" column, click on it to perform a historical search in that code.</i>
+<?php endif; ?>
 
-<p><i>If there is a code shown in either the "Code Moved From" or "Code Moved To" column, click on it to perform a historical search in that code.</i></p> 
+</p> 
+
 Code Count: <?=$resultCount['codes'];?><br/>
 <p></p>
 <table id="histcodelist" class="display">
@@ -21,7 +31,7 @@ Code Count: <?=$resultCount['codes'];?><br/>
 	<tbody>
 <?php foreach ($results['Codes'] as $i => $area) : ?>
 		<tr class="<?=$i%2==0?'even':'odd'?>" id="<?=$area['STDCode'];?>-<?=$area['NameClean'];?>">
-			<td class="font12"><b><?=$area['STDCode'];?></b></td>
+			<td class="font12"><?=$area['STDCodeLink'];?></td>
 			<td class="variable font12"><b><?=$area['Name'];?></b></td>
 			<td class="variable font12"><?=$area['GroupType'];?></td>
 			<td class="font12"><?=$area['Mapping'];?></td>

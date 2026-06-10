@@ -214,7 +214,11 @@ label[for*='dt-length-'] {
 	font-weight: bold;
 }
 
-[data-moved^='0']:hover, td[id*='r-ex-']:hover {
+[data-std-code] {
+	font-weight: bold;
+}
+
+[data-moved^='0']:hover, td[id*='r-ex-']:hover,[data-std-code]:hover {
 	cursor:pointer;
 	text-decoration:underline;
 }

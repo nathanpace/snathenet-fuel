@@ -140,6 +140,23 @@ $(document).on("click", "span[data-moved^='0']", function(e) {
 
 });
 
+// Action when a regular STD code is clicked
+$(document).on("click", "span[data-std-code]", function(e) {
+
+	event.preventDefault();
+	search = $(this).attr('data-std-code').trim(); 
+
+	// Get data value from element, this will be used as the search term
+	var formData = {
+		searchterm: search,
+		searchtype: 'historical',
+	};
+
+	// Call the search function
+	doSearch(formData);
+
+});
+
 // Action when help link is clicked
 $(document).on("click", "#about", function(e) {
 	$.ajax({
