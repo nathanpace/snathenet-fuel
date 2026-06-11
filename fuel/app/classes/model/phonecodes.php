@@ -752,14 +752,14 @@ class Phonecodes extends \Model
 		$return['d'] = $prevCodes[0];
 
 		// If the previous codes count is more than 1, add the second code here
-		if (!empty($prevcodes[1])) {
+		if (!empty($prevCodes[1])) {
 			$return['e'] = $prevCodes[1];
 		}
 
 		// Finally, add the searched for STD code
 		$return['f'] = $stdCode;
 		
-		// Format the trturn list into a string with right arrows as the glue
+		// Format the return list into a string with right arrows as the glue
 		return implode(" &rarr; ", $return);
 	}
 
