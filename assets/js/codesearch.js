@@ -23,7 +23,8 @@ function doSearch(formData)
 					targets: [
 						'#h-c-std-code', '#h-c-number-ranges',
 						'#h-c-exchange-count', '#h-c-prev-codes',
-						'#h-c-orig-code','#h-c-mapping',
+						'#h-c-charge-group-id',
+						'#h-c-orig-code',
 						'#h-e-id','#h-e-postcode'
 					]
 				},
@@ -31,6 +32,12 @@ function doSearch(formData)
 					width: 70, 
 					targets: [
 						'#h-e-prev-codes'
+					]
+				},
+				{
+					width: 125,
+					targets: [
+						'#h-c-mapping'
 					]
 				},
 				{ 
@@ -90,21 +97,22 @@ $(document).ready(function () {
 
 });
 
-// Action when a row is clicked on the code list
-$(document).on("click", "#codelist tr", function(e) {
-	
-	// Get ID of the clicked row
-	var id = $(this).attr('id');
+// Action when an exchange count is clicked on the code list
+$(document).on("click", "td[data-std-code-xchgs]", function(e) {
+
+	// Get the id
+	var id = $(this).attr('data-std-code-xchgs').trim(); 
 	
 	// Work out which set of exchange data to toggle
 	var showHideThis = '#exchanges-'+id;
+
 	$(showHideThis).toggle();
 
 	// Toggle selected row highight
 	if ($(showHideThis).is(':visible')) {
-		$(this).addClass('selected');
+		$(this).closest("tr").addClass('selected');
 	} else {
-		$(this).removeClass('selected');
+		$(this).closest("tr").removeClass('selected');
 	}
 });
 

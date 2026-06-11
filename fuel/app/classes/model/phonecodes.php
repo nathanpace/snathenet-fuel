@@ -113,17 +113,18 @@ class Phonecodes extends \Model
         // or the code name - in this case, we use the search delimiters to isolate the search term
 		$codes = $this->db->select(['`ExchangeGroupList`.`STDCode`', '`Range`', '`Name`', 
 									'`GroupType`', '`GroupID`', '`GroupName`', 
-									'`PreviousCodes`', '`OriginalCode`', '`mapping`', '`mappingReason`', '`otherNotes`'])
+									'`PreviousCodes`', '`OriginalCode`', '`RingCode`', 
+									'`mapping`', '`mappingReason`', '`otherNotes`'])
 						  ->from('ExchangeGroupList')
 						  ->join('ChargeGroupExchanges', 'LEFT')
 						  ->on('`ChargeGroupExchanges`.`ExchangeGroupID`', '=', '`ExchangeGroupList`.`id`')
 						  ->where('`ExchangeGroupList`.`STDCode`', 'like', $search)
 						  ->or_where('`ExchangeGroupList`.`Name`', 'REGEXP', $this->delimiters['s'] . $search . $this->delimiters['e'])
 						  ->execute();
-
+	
         // Get all matching exchanges for all codes
 		$return = $this->getExchangesForCodes($codes, $range);
-
+		
         // Return the data
 		return $return;
 	}
@@ -187,7 +188,7 @@ class Phonecodes extends \Model
 	}
 
     /**
-     *  @function getChargeInfo
+     *  @function getChargeGroupInfo
      *  @descripton get information about the requested charge group
      * 
      *  @access public
@@ -217,7 +218,8 @@ class Phonecodes extends \Model
 			// or the code name - in this case, we use the search delimiters to isolate the search term
 			$codes = $this->db->select(['`ExchangeGroupList`.`STDCode`', '`Range`', '`Name`', 
 										'`GroupType`', '`GroupID`', '`GroupName`', 
-										'`PreviousCodes`', '`OriginalCode`', '`mapping`', '`mappingReason`', '`otherNotes`'])
+										'`PreviousCodes`', '`OriginalCode`', '`RingCode`', 
+										'`mapping`', '`mappingReason`', '`otherNotes`'])
 							->from('ExchangeGroupList')
 							->join('ChargeGroupExchanges', 'LEFT')
 							->on('`ChargeGroupExchanges`.`ExchangeGroupID`', '=', '`ExchangeGroupList`.`id`')
@@ -489,6 +491,8 @@ class Phonecodes extends \Model
 				$row['mapping'] = '-';
 			}
 
+			$history = $this->formatCodeHistory($row['STDCode'], $row['PreviousCodes'], $row['OriginalCode']);
+
 			// Previous and original codes need further fettling
 			list($prev, $orig) = $this->formatPrevOrig($row['PreviousCodes'], $row['OriginalCode']);
 
@@ -505,6 +509,8 @@ class Phonecodes extends \Model
 				],
 				'PreviousCodes' => ($row['STDCode'] === '01987' ? "-" : $prev),
 				'OriginalCode' => ($row['STDCode'] === '01987' ? "-" : $orig),
+				'RingCode' => $row['RingCode'] ? $this->formatCodeLink($row['RingCode']) : "None",
+				'CodeHistory' => $history,
 				'Mapping' => $row['mapping'],
 				'MappingReason' => $row['mapping'] === "-" ? "N/A" : (empty($row['mappingReason']) ? $row['Name'] : $row['mappingReason']),
 				'OtherMappingNotes' => empty($row['otherNotes']) ? "None":$row['otherNotes'],
@@ -701,7 +707,64 @@ class Phonecodes extends \Model
 			$orig,
 		];
 	}
-    
+	
+	/**
+	 * @function formatCodeHistory
+	 * @description from the supplied code information, works out the pattern of historical changes in that code
+	 * 
+	 * @access private
+	 * @param string $stdCode the searched STD code
+	 * @param string $prevCode the previous STD codes
+	 * @param string $origCode the original (i.e. ring) STD code
+	 * 
+	 * @return string STD codes in historical order
+	 */
+	private function formatCodeHistory($stdCode, $prevCode, $origCode)
+	{
+		// Initiate return storage
+		$return = [];
+
+		// Get the previous codes into an array structure
+		$prevCodes = explode("|", $prevCode);
+
+		// Search the historical data for the first previous code, get moved from/moved to information
+		$history = $this->db->select(['movedFrom', 'movedTo'])
+								->from('HistoricalData')
+								->where('code', 'like', $prevCodes[0])
+								->limit(1)
+								->execute()->as_array();
+		
+		// Hard-code London as 01 for the first code if 020 is searched
+		if ($stdCode === '020') {
+			$return['a'] = '01';
+		}
+
+		// If the supplied origincal code is not empty, add it to the list here
+		// Or if the "movedFrom" data is not empty from the history search, use that instead
+		if (!empty($origCode)) {
+			$return['b'] = $origCode;
+		}
+		else if (!empty($history[0]['movedFrom'])) {
+			$return['c'] = $history[0]['movedFrom'];
+		} 
+
+		// Add the first of the previous codes
+		$return['d'] = $prevCodes[0];
+
+		// If the previous codes count is more than 1, add the second code here
+		if (!empty($prevcodes[1])) {
+			$return['e'] = $prevCodes[1];
+		}
+
+		// Finally, add the searched for STD code
+		$return['f'] = $stdCode;
+		
+		// Format the trturn list into a string with right arrows as the glue
+		return implode(" &rarr; ", $return);
+	}
+
+
+
     /**
      *  @function formatSector
      *  @description Returns sector information if appropriate

@@ -62,7 +62,8 @@ th {
 	padding: 3px;
 }
 
-#codelist tbody tr,
+#codelist tbody tr td[data-std-code-xchgs],
+#codelist tbody tr td[data-std-code],
 #exchangelist tbody tr td[id*='r-ex-'] {
 	cursor: pointer;
 }
@@ -139,7 +140,7 @@ div.dt-container {
 .nostyle:hover {
 	color: #333333;
 	text-decoration: none;
-	cursor:pointer;
+	cursor: pointer;
 }
 
 .tt {
@@ -170,7 +171,7 @@ label[for*='dt-length-'] {
 }
 
 #menu-header {
-	cursor:pointer;
+	cursor: pointer;
 }
 
 #menu-header-dropdown {
@@ -197,7 +198,7 @@ label[for*='dt-length-'] {
 .menu-item:hover {
 	color:black;
 	text-decoration:none;
-	cursor:pointer;
+	cursor: pointer;
 	background-color:lightgray;
 }
 

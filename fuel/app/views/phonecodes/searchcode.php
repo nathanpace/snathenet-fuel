@@ -1,7 +1,8 @@
 <hr/>
 <div class="h4">Search results for "<?=$searchTerm;?>" in <?=$searchType;?>:</div>
 
-Click on a row to view or hide the list of exchanges in that area.
+<i>Click on the exchange count to view or hide the list of exchanges in that area.<br>
+If an associated code (i.e a "ring" code) is shown, click on that to perform a historical search on that code</i>
 <p></p>
 <table id="codelist" class="display">
 	<thead>
@@ -12,11 +13,10 @@ Click on a row to view or hide the list of exchanges in that area.
 			<th id="h-c-exchange-count">Exchange Count</th>
 			<th id="h-c-charge-group-name">Charge Group<br/>Name</th>
 			<th id="h-c-charge-group-id">Charge Group<br>ID</th>
-			<th id="h-c-prev-codes">Previous Codes</th>
-			<th id="h-c-orig-code">Original Code</th>
-			<th id="h-c-mapping">Code Mapping</th>
-			<th id="h-c-map-reason">Reason For<br/>Code Mapping</th>
-			<th id="h-c-other-notes">Other<br/>Notes</th>
+			<th id="h-c-mapping">Original Code Mapping</th>
+			<th id="h-c-code-history">Code Change History</th>
+			<th id="h-c-hist-ring-code">Historical<br>Ring Code</th>
+			<th id="h-c-notes">Notes</th>
 		</tr>
 	</thead>
 	<tbody>
@@ -25,13 +25,12 @@ Click on a row to view or hide the list of exchanges in that area.
 			<td class="font12"><b><?=$area['STDCode'];?></b></td>
 			<td class="variable font12"><b><?=$area['Name'];?></b></td>
 			<td class="font12"><?=$area['NumberRange'] ?? 'ALL';?></td>
-			<td class="font12"><?=$area['Exchanges']['Count'];?></td>
+			<td class="font12" data-std-code-xchgs="<?=$area['STDCode'];?>-<?=$area['NameClean'];?>"><?=$area['Exchanges']['Count'];?></td>
 			<td class="variable font12"><?=$area['ChargeGroup']['Name'];?></td>
 			<td class="variable font12"><?=$area['ChargeGroup']['ID'];?></td>
-			<td class="font12"><?=$area['PreviousCodes'];?>
-			<td class="font12"><?=$area['OriginalCode'];?></td>
-			<td class="font12"><?=$area['Mapping'];?></td>
-			<td class="variable font12"><?=$area['MappingReason'];?></td>
+			<td class="font12 variable"><?=$area['Mapping'] === "-" ? "N/A" : $area['Mapping']  . "<br>(" . $area['MappingReason'] . ")" ;?></td>
+			<td class="font12"><?=$area['CodeHistory'];?></td>
+			<td class="font12"><?=$area['RingCode'];?></td>
 			<td class="variable font12"><?=$area['OtherMappingNotes'];?></td>
 		</tr>
 <?php endforeach;?>
