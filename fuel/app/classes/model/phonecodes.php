@@ -27,7 +27,6 @@ class Phonecodes extends \Model
 	// their initial allocation (i.e. breaking away from 0238x or 0762x codes)
 	private $original5DigitNICodes = [
 		'02477' => '02477',
-		'02477' => '02477',
 		'02657' => '02657',
 		'02665' => '02665',
 		'02667' => '02667',
@@ -41,13 +40,15 @@ class Phonecodes extends \Model
 		'06626' => '06626',
 		'06627' => '06627',
 		'06937' => '06937',
-		'08462' => '02382',
-		'0960' => '02383',
-		'0849' => '02384',
-		'08466' => '02386',
-		'0861' => '07625',
-		'0820' => '07626',
-		'0868' => '07627',
+
+		'02382' => '08462',
+		'02383' => '0960',
+		'02384' => '0849',
+		'02386' => '08466',
+		'07625' => '0861',
+		'07626' => '08206',
+		'07627' => '0868',
+		'08206' => '08206',
 	];
 
 
@@ -884,16 +885,16 @@ class Phonecodes extends \Model
 				return (substr($search, 0, 4));
 				break;
 
-
 			case 5:
+
 				// Stage 1; check to see if the code was an original NI code
-				$mappedSearch = array_search($search, $this->original5DigitNICodes);
-				
+				$mappedSearch = $this->original5DigitNICodes[$search] ?? false;
+
 				// Mapping found?
 				if ($mappedSearch !== false) {
-					// If the mapped search does not match the orginal search, return mapping,
-					// else return first 4 characters of search
-					return ($mappedSearch === $search ? $search : substr($mappedSearch, 0, 4));
+					// If the mapped search matches orginal search, return search
+					// If it doesn't, return mapped search if it's 08206else return first 4 characters of search
+					return ($mappedSearch === $search ? $search : ($mappedSearch === '08206' ? $mappedSearch : substr($mappedSearch, 0, 4)));
 				}
 
 				// Stage 2; check to see if the code was an original 5 digit GB code
