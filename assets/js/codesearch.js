@@ -22,9 +22,7 @@ function doSearch(formData)
 					width: 60, 
 					targets: [
 						'#h-c-std-code', '#h-c-number-ranges',
-						'#h-c-exchange-count', '#h-c-prev-codes',
-						'#h-c-charge-group-id',
-						'#h-c-orig-code',
+						'#h-c-exchange-count',
 						'#h-e-id','#h-e-postcode'
 					]
 				},
@@ -35,15 +33,15 @@ function doSearch(formData)
 					]
 				},
 				{
-					width: 125,
+					width: 100,
 					targets: [
-						'#h-c-mapping'
+						'#h-c-hist-ring-code'
 					]
 				},
-				{ 
-					width: 170, 
+				{
+					width: 120,
 					targets: [
-						'#h-e-zone-district'
+						'#h-c-charge-group-id'
 					]
 				},
 				{ 
@@ -52,7 +50,27 @@ function doSearch(formData)
 						'#h-e-pre-afn-code','#h-e-post-afn-code',
 						'#h-e-afn-route-sector'
 					]
-				},					
+				},
+				{
+					width: 150,
+					targets: [
+						'#h-c-mapping'
+					]
+				},
+				{ 
+					width: 170, 
+					targets: [
+						'#h-c-charge-group-name',
+						'#h-c-code-history',
+						'#h-e-zone-district'
+					]
+				},
+				{
+					width: 275,
+					targets: [
+						'#h-c-area-name'
+					]
+				},
 				{
 					type: 'num',
 					targets: '#h-e-prev-codes'

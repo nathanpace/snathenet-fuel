@@ -13,8 +13,8 @@ If an associated code (i.e a "ring" code) is shown, click on that to perform a h
 			<th id="h-c-exchange-count">Exchange Count</th>
 			<th id="h-c-charge-group-name">Charge Group<br/>Name</th>
 			<th id="h-c-charge-group-id">Charge Group<br>ID</th>
-			<th id="h-c-mapping">Original Code Mapping</th>
-			<th id="h-c-code-history">Code Change History</th>
+			<th id="h-c-mapping">Original Code<br>Mapping</th>
+			<th id="h-c-code-history">Code Change<br>History</th>
 			<th id="h-c-hist-ring-code">Historical<br>Ring Code</th>
 			<th id="h-c-notes">Notes</th>
 		</tr>
