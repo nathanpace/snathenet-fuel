@@ -2,20 +2,25 @@
 			<div class="col-md-12">
 				<div>
 					<div class="h2">Hi there! I'm Nathan!</div>
-					<div class="h3">I'm a <?=$age;?> year old PHP developer based in Liverpool, NW England, UK, and I am currently available for work<br><span class="italic">(ideally remote/remote first or hybrid)</span>.</div>
+					<div class="h3">I'm a <?=$age;?> year old web developer (primarily PHP back end) based in Liverpool, NW England, UK.</div>
 				</div>
 				<div class="para">
 					<div class="h4 italic">What do I do?</div>
-					Please take a look at <a href="https://www.linkedin.com/in/nathan-pace-php-developer-nw-eng/" target="_blank">my LinkedIn profile</a> or <a href="assets/downloads/cv.pdf" download>download my current CV</a> for the full story, but if you want a very brief summary:
+					Please take a look at <a href="https://www.linkedin.com/in/nathan-pace-php-developer-nw-eng/" target="_blank">my LinkedIn profile</a> or <a href="download-cv">download my current CV</a> for the full story, but if you want a very brief summary:
 					<ul>
 						<li><b>PHP</b>, mainly. I've worked with the language for about 25 years now, from writing bespoke code through to working with frameworks such as <b>Laravel</b> or <b>FuelPHP</b> - and I'm just as happy doing either.</li>
 						<li>I'm also happy to talk <b>SQL</b>, my preferences being either <b>PostgreSQL</b> or <b>MySQL</b>.</li>
-						<li>My preference is for <b>back-end development work</b> using the languages above although I have been known to dabble in front end stuff when the need has arisen for me to do so (<b>HTML</b>, <b>JS</b> and <b>CSS</b>).</li>
+						<li>My preference is for <b>back-end development work</b> using the languages above although I have been known to dabble in front end stuff when the need has arisen for me to do so (<b>HTML</b>, <b>JS</b> and <b>CSS</b>).
+						<br>To address this, I've recently started looking at improving my skills in <b>React.js</b>.</li>
 						<li>Technology-wise, I'm happy working on <b>Mac</b>, <b>Linux</b> or <b>Windows</b>; basically, as long as the stuff I need to do my job is on there, I'll work on it!</li>
 					</ul>
 				</div>
+				<!--div>
+					<b><i>My current role (August 2026)</i></b><br/>
+					I'm currently employed as a full-stack developer for Complete Education Solutions.
+				</div-->
 				<div>
-					<b><i>My most recent role (June 2018 - November 2025)</i></b><br/>
+					<b><i>My most recent previous role (June 2018 - November 2025)</i></b><br/>
 					Senior developer for <a href="https://www.elevensoftware.com/" target="_blank">Eleven Software</a> <i>(previously Airangel, which was taken over by Eleven in 2023)</i>, initially based in Warrington and transferring to a <b>fully remote role</b> in 2020, working with teams based in Europe and the US.
 					<br/>
 					Here's some of the stuff I did during my time there:
@@ -29,7 +34,7 @@
 						<li>Responsible for documentation of code and processes for users and developers, both in-code and using Confluence.</li>
 					</ul>
 
-					<i>For more about my work history, please <a href="https://www.linkedin.com/in/nathan-pace-php-developer-nw-eng/" target="_blank">view my LinkedIn profile</a> or <a href="assets/downloads/cv.pdf" download>download my current CV</a></i>.
+					<i>For more about my work history, please <a href="https://www.linkedin.com/in/nathan-pace-php-developer-nw-eng/" target="_blank">view my LinkedIn profile</a> or <a href="download-cv">download my current CV</a></i>.
 				</div>
 				<div class="para">
 					<div class="h4 italic">What else have I done recently?</div>
@@ -59,14 +64,14 @@
 						<li>
 							<b>Boardgaming</b>
 							<ul>
-								<li>I enjoy playing board and card games either in person or online via <a href="https://en.boardgamearena.com/" target="_blank">Board Game Arena</a>.<br/>Particular favourites include <b>Carcassonne</b>, <b>Takenoko</b>, <b>7 Wonders</b>, <b>Ticket To Ride</b>, <b>Braggart</b> and <b>Next Station: London</b>.</li>
+								<li>I enjoy playing board and card games either in person or online via <a href="https://en.boardgamearena.com/" target="_blank">Board Game Arena</a>.<br/>Particular favourites include <b>Carcassonne</b>, <b>Takenoko</b>, <b>Ticket To Ride</b>, <b>Flip 7</b>, <b>Skip-Bo</b>, <b>Uno</b> and <b>Next Station: London</b>.</li>
 							</ul>
 						</li>
 					</ul>
 				</div>
 				<div class="para">
 					<div class="h4 italic">Want to say hi? Want to ask more about stuff I do or have done?</div>
-					Please do!  Email me - <a href="javascript:location='mailto:\u0068\u0065\u006c\u006c\u006f\u0040\u0073\u006e\u0061\u0074\u0068\u0065\u002e\u006e\u0065\u0074';void 0"><i>hello at snathe.net</i></a>
+					Please do!  Email me here: <?=$emailLink;?>
 				</div>
 			</div>
 		</div>
