@@ -21,14 +21,15 @@
  */
 class Controller_Base extends Controller_Template
 {
-	// Defalt page title
-	private $defaultTitle = "snathe.net - PHP developer in NW England for hire";
-	
-	// Default CSS files to be loaded
-	private $defaultCSS = ['bootstrap/bootstrap.css', 'font-awesome/css/font-awesome.min.css','snathe.css'];
+	// Site defaults
+	private $defaults = [
+		'title' => "snathe.net - PHP developer in NW England for hire",
+		'keywords' => ['PHP', 'Laravel', 'back-end development', 'web development', 'web developer', 'Liverpool', 'Merseyside'],
+		'description' => "snathe.net is the personal website of Nathan, a PHP developer from Liverpool in Merseyside.",
+		'css' => ['bootstrap/bootstrap.css', 'font-awesome/css/font-awesome.min.css','snathe.css'],
+		'js' => ['https://ajax.googleapis.com/ajax/libs/jquery/3.7.1/jquery.min.js','base.js']
 
-	// Default JS files to be loaded
-	private $defaultJS = ['https://ajax.googleapis.com/ajax/libs/jquery/3.7.1/jquery.min.js','base.js'];
+	];
 
 	// Internal site menu for dropdown
 	private $siteMenuInternal = [
@@ -88,12 +89,19 @@ class Controller_Base extends Controller_Template
 		// Build up the data array to be passed to the view
 		$data = [
 			// Use class defaults if no value has been passed in the attribute array
-			'title' => $attrs['title'] ?? $this->defaultTitle,
+			'title' => $attrs['title'] ?? $this->defaults['title'],
 			
 			'assets' => [
 				// If css or js attributes have been passed in $attrs, merge them with the defaults
-				'css' => array_key_exists('css', $attrs) ? array_merge($this->defaultCSS, $attrs['css']) : $this->defaultCSS,
-				'js' => array_key_exists('js', $attrs) ? array_merge($this->defaultJS, $attrs['js']) : $this->defaultJS,
+				'css' => array_key_exists('css', $attrs) ? array_merge($this->defaults['css'], $attrs['css']) : $this->defaults['css'],
+				'js' => array_key_exists('js', $attrs) ? array_merge($this->defaults['js'], $attrs['js']) : $this->defaults['js'],
+			],
+
+			// Build up the meta tags
+			'meta' => [
+				['name' => 'description', 'content' => $attrs['description'] ?? $this->defaults['description']],
+				['name' => 'keywords', 'content' => array_key_exists('keywords', $attrs) ? implode(",", $attrs['keywords']) : implode(",",$this->defaults['keywords'])],
+				['name' => 'charset', 'content' => 'utf-8'],
 			]
 		];
 

@@ -1,4 +1,5 @@
-<meta charset="utf-8">
-	<title><?=$title;?></title>
+<title><?=$title;?></title>
+	<?=Html::meta($meta); ?>
+
 <?=Asset::css($assets['css']); ?>
 <?=Asset::js($assets['js']); ?>
