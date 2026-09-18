@@ -35,5 +35,10 @@ class Presenter_Homepage_Content extends Presenter
 		$then = new \DateTime('@266544601');
 		$age = $then->diff($now);
 		$this->age = $age->y;
+
+		$email = getenv('CONTACT_EMAIL'); 
+		$email_disp = getenv('CONTACT_EMAIL_DISP');
+		
+		$this->emailLink = Html::mail_to_safe($email, $email_disp);
 	}
 }

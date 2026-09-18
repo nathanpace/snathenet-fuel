@@ -33,7 +33,9 @@ class Controller_Phonecodes extends Controller_Base
 		$this->setPageAttributes([
 			'js' => ['https://cdn.datatables.net/2.3.7/js/dataTables.js','codesearch.js'],
 			'css' => ['https://cdn.datatables.net/2.3.7/css/dataTables.dataTables.css'],
-			'title' => 'snathe.net - STD code search tool',
+			'title' => 'snathe.net - UK STD code search tool',
+			'description' => 'A tool for searching UK STD codes and telephone exchanges. Historical information can also be retrieved.',
+			'keywords' => ['dialling codes', 'STD codes', 'area codes',],
 		]);
 
 		$this->setContent([

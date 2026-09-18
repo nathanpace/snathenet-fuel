@@ -36,18 +36,12 @@ class Controller_Base extends Controller_Template
 		"/" => "Home",
 		"geostuff" => "Geostuff",
 		"phonecodes" => "STD code search",
+		"download-cv" => "Download my CV"
 	];
 
 	// External site menu for dropdown
 	private $siteMenuExternal = [
-		[
-			'link' => 'assets/downloads/cv.pdf',
-			'text' => "Download my CV",
-			'attrs' => [
-				'download' => 'cv',
-				'target' => '_blank',
-			]
-		],
+
 		[
 			'link' => 'https://www.linkedin.com/in/nathan-pace-php-developer-nw-eng/',
 			'text' => "My LinkedIn profile",

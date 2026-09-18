@@ -10,10 +10,6 @@
  * @link       https://fuelphp.com
  */
 
-// Models to use
-use \Model\GeocodeAPI; 	// Geolocation data
-use \Model\Astro;		// Sunrise/sunset information
-use \Model\WeatherAPI; 	// Weather information
 
 /**
  * The Homepage Controller.
