@@ -36,6 +36,9 @@ class Presenter_Homepage_Content extends Presenter
 		$age = $then->diff($now);
 		$this->age = $age->y;
 
-		$this->emailLink = Html::mail_to_safe('hello@snathe.net', 'hello at snathe.net');
+		$email = getenv('CONTACT_EMAIL'); 
+		$email_disp = getenv('CONTACT_EMAIL_DISP');
+		
+		$this->emailLink = Html::mail_to_safe($email, $email_disp);
 	}
 }
