@@ -140,8 +140,8 @@ class Controller_Base extends Controller_Template
 		return Response::forge($this->template, 404);
 	}
 
-		/**
-	 * @function show404
+	/**
+	 * @function showError
 	 * @description show generic error content
 	 * 
 	 * @return Response
