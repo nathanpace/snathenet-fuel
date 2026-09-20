@@ -24,8 +24,8 @@ class Controller_Base extends Controller_Template
 	// Site defaults
 	private $defaults = [
 		'title' => "snathe.net - PHP developer in NW England for hire",
-		'keywords' => ['PHP', 'Laravel', 'back-end development', 'web development', 'web developer', 'Liverpool', 'Merseyside'],
-		'description' => "snathe.net is the personal website of Nathan, a PHP developer from Liverpool in Merseyside.",
+		'keywords' => ['PHP', 'Laravel', 'back-end development', 'web development', 'web developer', 'web programming', 'Liverpool', 'Merseyside'],
+		'description' => "snathe.net is the personal website of Nathan, a PHP and Laravel developer from Liverpool in Merseyside who is curently available for work (ideally remote or hybrid)",
 		'css' => ['bootstrap/bootstrap.css', 'font-awesome/css/font-awesome.min.css','snathe.css'],
 		'js' => ['https://ajax.googleapis.com/ajax/libs/jquery/3.7.1/jquery.min.js','base.js']
 
