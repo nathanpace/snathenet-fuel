@@ -57,5 +57,5 @@ return array(
 	'geostuff' => 'geostuff/index',
 	'locationSearch' => 'geostuff/search',
 
-	'download-:file' => 'download/file',
+	'download/:file' => 'download/file',
 );

@@ -36,7 +36,7 @@ class Controller_Base extends Controller_Template
 		"/" => "Home",
 		"geostuff" => "Geostuff",
 		"phonecodes" => "STD code search",
-		"download-cv" => "Download my CV"
+		"download/cv" => "Download my CV"
 	];
 
 	// External site menu for dropdown
@@ -140,6 +140,32 @@ class Controller_Base extends Controller_Template
 		return Response::forge($this->template, 404);
 	}
 
+	/**
+	 * @function showError
+	 * @description show generic error content
+	 * 
+	 * @return Response
+	 */
+	protected function showError($message, $code = 500)
+	{
+		// Use default page attributes
+		$this->setPageAttributes();
+
+		$titles=['Aw, crap!', 'Bloody Hell!', 'Uh Oh!', 'Nope, not here.', 'Huh?', 'Well, darn it!', 'Fiddlesticks!'];
+
+		$data = [
+			'title' => $titles[array_rand($titles)],
+			'message' => $message
+		];
+
+		// Forge 404 content and set in base template
+		$this->setContent([
+			'body' => View::forge('base/error', $data)
+		]);
+
+		// Return the forged response here with a 404 status
+		return Response::forge($this->template, $code);
+	}
 
 	/**
 	 * Set the header

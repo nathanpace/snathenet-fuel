@@ -9,7 +9,7 @@
  * @copyright  2010 - 2019 Fuel Development Team
  * @link       https://fuelphp.com
  */
-
+use \MyLog as MyLog;
 
 /**
  * The Download Controller.
@@ -59,17 +59,24 @@ class Controller_Download extends Controller_Base
 	 * 
 	 * @access private
 	 * @param array $download the details of the file to download
+	 * 
+	 * @throws InvalidPathException
 	 */
 	private function present_download($download) 
-	{
-		// Determine the filename of the file on the server
-		$serverFile = $this->downloadRoot . $download['serverFile'] . "." . $download['fileType'];
+	{	
+		try {
+			// Determine the filename of the file on the server
+			$serverFile = $this->downloadRoot . $download['serverFile'] . "." . $download['fileType'];
 
-		// COnstruct the filename of the file as to be saved as downloaded.
-		// Use the original server filename if a specific download name has not been presented
-		$downloadName = (array_key_exists('downloadName', $download) ? $download['downloadName'] : $download['serverFile']) . "." . $download['fileType'];
+			// Construct the filename of the file as to be saved as downloaded.
+			// Use the original server filename if a specific download name has not been presented
+			$downloadName = (array_key_exists('downloadName', $download) ? $download['downloadName'] : $download['serverFile']) . "." . $download['fileType'];
 
-		// Call the framework download function to present the download
-		File::download($serverFile, $downloadName);
+			// Call the framework download function to present the download
+			File::download($serverFile, $downloadName);
+		} catch (InvalidPathException $e) {
+			MyLog::warning("Unable to find {$serverFile} for downloading. Exception trace: {$e->getMessage()}");
+			$this->showError("The file requested for downloading could not be found!", 404);
+		}
 	}
 }
