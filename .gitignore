@@ -8,8 +8,11 @@ desktop.ini
 fuel/app/logs/*/*/*
 fuel/app/cache/*/*
 fuel/app/.env
+fuel/app/.env-*
 nbproject/
 .idea
 *.tmproj
 *.sublime-project
 *.sublime-workspace
+mysql/
+.env.mysql
