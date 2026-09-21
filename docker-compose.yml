@@ -1,0 +1,39 @@
+services:
+  php80:
+    build:
+      context: .
+      dockerfile: Dockerfile
+    extra_hosts:
+      - 'host.docker.internal:host-gateway'
+    ports:
+      - 8000:80
+    restart: always
+    volumes:
+      - .:/var/www/html
+    networks:
+      - my_net
+
+  db:
+    image: mysql/mysql-server:8.0
+    command: --default-authentication-plugin=mysql_native_password
+    volumes:
+      - ./mysql:/var/lib/mysql
+    env_file:
+      - .env.mysql
+    ports:
+      - 3306:3306
+    restart: always
+    networks:
+      - my_net
+
+  phpmyadmin:
+    image: phpmyadmin
+    restart: always
+    ports:
+      - 8080:80
+    networks:
+      - my_net
+
+networks:
+  my_net:
+    name: dockernet
