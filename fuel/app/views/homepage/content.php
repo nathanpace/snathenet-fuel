@@ -2,22 +2,23 @@
 			<div class="col-md-12">
 				<div>
 					<div class="h2">Hi there! I'm Nathan!</div>
-					<div class="h3">I'm a <?=$age;?> year old web developer (primarily PHP back end) based in Liverpool, NW England, UK.</div>
+					<div class="h3">I'm a <?=$age;?> year old PHP and Laravel developer based in Liverpool, NW England, UK.</div>
+					<div class="h3">Also, I am <b>immediately available for work</b> <span class="italic">(ideally remote/remote first or hybrid)</span></div>
 				</div>
 				<div class="para">
 					<div class="h4 italic">What do I do?</div>
-					Please take a look at <a href="https://www.linkedin.com/in/nathan-pace-php-developer-nw-eng/" target="_blank">my LinkedIn profile</a> or <a href="download-cv">download my current CV</a> for the full story, but if you want a very brief summary:
+					Please take a look at <a href="https://www.linkedin.com/in/nathan-pace-php-developer-nw-eng/" target="_blank">my LinkedIn profile</a> or <a href="download/cv">download my current CV</a> for the full story, but if you want a very brief summary:
 					<ul>
-						<li><b>PHP</b>, mainly. I've worked with the language for about 25 years now, from writing bespoke code through to working with frameworks such as <b>Laravel</b> or <b>FuelPHP</b> - and I'm just as happy doing either.</li>
-						<li>I'm also happy to talk <b>SQL</b>, my preferences being either <b>PostgreSQL</b> or <b>MySQL</b>.</li>
+						<li><a href="https://www.php.net/" target="_blank"><b>PHP</b></a>, mainly. I've worked with the language for about 25 years now, from writing bespoke code through to working with frameworks such as <a href="https://laravel.com/" target="_blank"><b>Laravel</b></a> or <a href="https://fuelphp.com/" target="_blank"><b>FuelPHP</b></a> - and I'm just as happy doing either.</li>
+						<li>I'm also happy to talk <b>SQL</b>, my preferences being either <a href="https://www.postgresql.org/" target="_blank"><b>PostgreSQL</b></a> or <a href="https://www.mysql.com/" target="_blank"><b>MySQL</b></a>.</li>
 						<li>My preference is for <b>back-end development work</b> using the languages above although I have been known to dabble in front end stuff when the need has arisen for me to do so (<b>HTML</b>, <b>JS</b> and <b>CSS</b>).
-						<br>To address this, I've recently started looking at improving my skills in <b>React.js</b>.</li>
+						<br>To address this, I've recently started looking at improving my skills in <a href="https://react.dev/" target="_blank"><b>React.js</b></a>.</li>
 						<li>Technology-wise, I'm happy working on <b>Mac</b>, <b>Linux</b> or <b>Windows</b>; basically, as long as the stuff I need to do my job is on there, I'll work on it!</li>
 					</ul>
 				</div>
 				<!--div>
-					<b><i>My current role (August 2026)</i></b><br/>
-					I'm currently employed as a full-stack developer for Complete Education Solutions.
+					<b><i>My current role </i></b><br/>
+					To be updated once I'm back in full time employment
 				</div-->
 				<div>
 					<b><i>My most recent previous role (June 2018 - November 2025)</i></b><br/>
@@ -34,7 +35,7 @@
 						<li>Responsible for documentation of code and processes for users and developers, both in-code and using Confluence.</li>
 					</ul>
 
-					<i>For more about my work history, please <a href="https://www.linkedin.com/in/nathan-pace-php-developer-nw-eng/" target="_blank">view my LinkedIn profile</a> or <a href="download-cv">download my current CV</a></i>.
+					<i>For more about my work history, please <a href="https://www.linkedin.com/in/nathan-pace-php-developer-nw-eng/" target="_blank">view my LinkedIn profile</a> or <a href="download/cv">download my current CV</a></i>.
 				</div>
 				<div class="para">
 					<div class="h4 italic">What else have I done recently?</div>
