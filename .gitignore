@@ -1,4 +1,5 @@
 **/.DS_Store
+**/.env*
 *.bak
 Thumbs.db
 desktop.ini
@@ -7,9 +8,9 @@ desktop.ini
 .settings
 fuel/app/logs/*/*/*
 fuel/app/cache/*/*
-fuel/app/.env
 nbproject/
 .idea
 *.tmproj
 *.sublime-project
 *.sublime-workspace
+mysql/

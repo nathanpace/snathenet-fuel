@@ -51,8 +51,8 @@ class Controller_Homepage extends Controller_Base
 	 */
 	public function action_info()
 	{	
-		// Return not found if not localhost or home IP
-		if (in_array(Input::ip(), ['127.0.0.1', getenv('HOME_IP')]) === false) {
+		// Return not found if not localhost, docker, or home IP
+		if (in_array(Input::ip(), ['127.0.0.1', 'localhost', getenv('DOCKER_IP'), getenv('HOME_IP')]) === false) {
 			return $this->show404();
 		}
 
