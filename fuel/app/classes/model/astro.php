@@ -26,7 +26,7 @@ class Astro extends \Model
 	 * @param float $lat latitiude value
 	 * @param float $long longitude value
 	 */ 
-	public function __construct($lat, $long)
+	public function __construct(float $lat, float $long)
 	{
 		$this->lat = $lat;
 		$this->long = $long;
@@ -48,7 +48,7 @@ class Astro extends \Model
 	 * 
 	 *  @return array sunrise/sunset info for today and tomorrow
 	 */
-	private function initialiseSunInfo() 
+	private function initialiseSunInfo() : array
 	{
 		
 		// Get object timezone
@@ -91,9 +91,11 @@ class Astro extends \Model
 	 * 
 	 *  @access private
 	 * 
+	 * 	@param int $tomrw a timestamp representing tomorrow's date
+	 * 	@param int $today a timestamp representing today's date
 	 *  @return string formated string
 	 */
-    private function calculateDiff($tomrw, $today, $type = "sun")
+    private function calculateDiff(int $tomrw, int $today, string $type = "sun") : string
     {
         // Get difference in seconds
         $diff = $tomrw - $today;
@@ -136,7 +138,7 @@ class Astro extends \Model
 	 *  @return array of converted info from call
 	 * 
 	 */
-	private function calculateAndConvertSunInfo($date)
+	private function calculateAndConvertSunInfo(\DateTime $date) : array
 	{
 		// Create info array, add formatted date from supplied object
 		$info = [
@@ -203,7 +205,7 @@ class Astro extends \Model
 	 * 	@return array of time offset information
 	 * 
 	 */
-	private function calculateTimeOffset() 
+	private function calculateTimeOffset() : array
 	{
 		
 		// Normalise longitude
@@ -268,7 +270,7 @@ class Astro extends \Model
 	 * 
 	 * @return array of sun info
 	 */
-	public function getSunInfo()
+	public function getSunInfo() : array
 	{
 		return $this->sunInfo;
 	}
@@ -279,9 +281,9 @@ class Astro extends \Model
 	 * 
 	 * @access public
 	 * 
-	 * @return array of sun info
+	 * @return array of time offset info
 	 */
-	public function getTimeOffsetInfo()
+	public function getTimeOffsetInfo() : array
 	{
 		return $this->timeOffsetInfo;
 	}
@@ -293,7 +295,7 @@ class Astro extends \Model
 	 * @access public
 	 * @return array of lat/long data
 	 */
-	public function getLatLong()
+	public function getLatLong() : array
 	{
 		return [
 			'lat' => $this->lat,
@@ -308,7 +310,7 @@ class Astro extends \Model
 	 * @access public
 	 * @return string timezone
 	 */
-	public function getTimezone()
+	public function getTimezone() : string
 	{
 		return $this->timezone;
 	}

@@ -29,7 +29,7 @@ class GeocodeAPI extends \ApiRequest
 	 *  
 	 * @param string $query place name or postcode to get info about
 	 */ 
-	public function __construct($query)
+	public function __construct(string $query)
 	{
 		// Call parent constructor, passing in API url
 		parent::__construct(getenv("GEOCODE_API_URL"));
@@ -49,10 +49,10 @@ class GeocodeAPI extends \ApiRequest
 	 * 
 	 * @param string $query query string to pass to API call
 	 * 
-	 * @return boolean
+	 * @return array data retrieved from API or error information
 	 * 
 	 */
-	private function retrieveDataFromApi($query)
+	private function retrieveDataFromApi(string $query) : array
 	{	
 		
 		// Param array
@@ -131,7 +131,6 @@ class GeocodeAPI extends \ApiRequest
 		// Garbage collection
 		unset($fromApi);
 
-		
 		// Return formatted data
 		return $data;
 	}
@@ -145,10 +144,10 @@ class GeocodeAPI extends \ApiRequest
 	 * @param float $lat the latitude
 	 * @param float $long the longitude
 	 * 
-	 * @return string a generated map link
+	 * @return string a generated map link (uses framework function)
 	 * 
 	 */
-	private function generateMapLink($lat, $long)
+	private function generateMapLink(float $lat, float $long) : string
 	{
 		$placeholders = ["*LAT*", "*LONG*"];
 		$replacements = [$lat, $long];
@@ -156,9 +155,7 @@ class GeocodeAPI extends \ApiRequest
 		// Replace placeholders in class map URL constant with supplied params
 		$link = str_replace($placeholders, $replacements, self::MAP_URL);
 
-		// Create link text
-		$text = "";
-
+		// Use the framework function to generate the link
 		return \Html::anchor($link, $postcode, ['target' => '_blank']);
 	}
 	
@@ -176,7 +173,7 @@ class GeocodeAPI extends \ApiRequest
 	 * @return string the unque ID
 	 * 
 	 */
-	private function generatePlaceId($name, $outcode, $isPostcode)
+	private function generatePlaceId(string $name, string $outcode, string $isPostcode) : string
 	{
 		
 		// If this is a postcode, return lowercase with spaces replaced by hyphens
@@ -201,7 +198,7 @@ class GeocodeAPI extends \ApiRequest
 	 * @return array details array from object
 	 * 
 	 */
-    public function getDetails()
+    public function getDetails() : array
     {
 		return $this->details;
     }
