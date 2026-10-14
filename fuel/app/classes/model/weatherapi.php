@@ -40,13 +40,13 @@ class WeatherAPI extends \ApiRequest
 	 * 
 	 * @access private
 	 * 
-	 * @param string $lat latitude of location to get weather data for
-	 * @param string $long longitude of location to get weather data for
+	 * @param float $lat latitude of location to get weather data for
+	 * @param float $long longitude of location to get weather data for
 	 * 
 	 * @return array error information if retrieval failed, else weather data from API
 	 * 
 	 */
-	private function retrieveData($lat, $long)
+	private function retrieveData(float $lat, float $long) : array
 	{	
 
 		// Set up param array to pass to API call
@@ -100,7 +100,7 @@ class WeatherAPI extends \ApiRequest
 	 * 
 	 * @return float converted and rounded value
 	 */
-	private function convertTemp($value, $unit = null)
+	private function convertTemp(float $value, ?string $unit = null) : float
 	{
 		switch ($unit)
 		{
@@ -123,7 +123,7 @@ class WeatherAPI extends \ApiRequest
 	 * @return array details array from object
 	 * 
 	 */
-    public function getDetails()
+    public function getDetails() : array
     {
 		return $this->details;
     }

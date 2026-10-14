@@ -93,7 +93,7 @@ class Phonecodes extends \Model
      *  @param string $search the search term - can either be a numeric area code or a code name
      *  @return array matching search information
      */
-	public function getCodeInfo($search)
+	public function getCodeInfo(string $search) : array
 	{
 		$return = [];
 		
@@ -121,7 +121,7 @@ class Phonecodes extends \Model
 						  ->on('`ChargeGroupExchanges`.`ExchangeGroupID`', '=', '`ExchangeGroupList`.`id`')
 						  ->where('`ExchangeGroupList`.`STDCode`', 'like', $search)
 						  ->or_where('`ExchangeGroupList`.`Name`', 'REGEXP', $this->delimiters['s'] . $search . $this->delimiters['e'])
-						  ->execute();
+						  ->execute()->as_array();
 	
         // Get all matching exchanges for all codes
 		$return = $this->getExchangesForCodes($codes, $range);
@@ -139,7 +139,7 @@ class Phonecodes extends \Model
      *  @param string $search the search term (exchange name or MDF reference)
      *  @return array matching search information
      */
-	public function getExchangeInfo($search)
+	public function getExchangeInfo(string $search) : array
 	{
 	
 		$return = [];
@@ -151,7 +151,7 @@ class Phonecodes extends \Model
 							  ->where('ExchangeName', 'REGEXP', $this->delimiters['s']  . $search . $this->delimiters['e'] )
 							  ->or_where('AltName', 'REGEXP', $this->delimiters['s']  . $search . $this->delimiters['e'] )
 							  ->or_where('MDFReference', '=', strtoupper($search)) 
-							  ->execute();
+							  ->execute()->as_array();
 		
         // Iterate over the returned results
         foreach ($exchanges as $exchg) {
@@ -196,7 +196,7 @@ class Phonecodes extends \Model
      *  @param string $search the search term (exchange name or MDF reference)
      *  @return array matching search information
      */
-	public function getChargeGroupInfo($search)
+	public function getChargeGroupInfo(string $search) : array
 	{
 		$groupMap = [];
 
@@ -208,7 +208,7 @@ class Phonecodes extends \Model
 							  ->join('ChargeGroupList', 'LEFT')
 						  	  ->on('`ChargeGroupList`.`ref`', '=', '`mapChargeGroupsExchangeGroups`.`id_ChargeGroup`')
 							  ->where('groupName', 'REGEXP', $this->delimiters['s']  . $search . $this->delimiters['e'] )
-							  ->execute();
+							  ->execute()->as_array();
 		foreach ($groupExchangeGroups as $code) {
 			$groupMap[] = $code['id_exchangeGroup'];
 		}
@@ -225,7 +225,7 @@ class Phonecodes extends \Model
 							->join('ChargeGroupExchanges', 'LEFT')
 							->on('`ChargeGroupExchanges`.`ExchangeGroupID`', '=', '`ExchangeGroupList`.`id`')
 							->where('`id`', 'IN', $groupMap)
-							->execute();
+							->execute()->as_array();
 
 			// Get all matching exchanges for all codes
 			$return = $this->getExchangesForCodes($codes);
@@ -243,7 +243,7 @@ class Phonecodes extends \Model
      *  @param string $search the search term (a historical code)
      *  @return array matching search information
      */
-	public function getHistoricalCodeInfo($search)
+	public function getHistoricalCodeInfo(string $search) : array
 	{
 				
 		$return = [
@@ -265,7 +265,7 @@ class Phonecodes extends \Model
 							  ->from('HistoricalData')
 							  ->where('code', '=', $processedSearch)
 							  ->order_by('code','asc')
-							  ->execute();
+							  ->execute()->as_array();
 
 		foreach ($oldCodes as $row) {
 
@@ -301,7 +301,7 @@ class Phonecodes extends \Model
 							  ->where('OriginalSTDCode', 'LIKE', $search . '%')
 							  ->or_where('OriginalSTDCode', 'LIKE', '%/' . $search . '%')
 							  ->order_by('OriginalSTDCode','asc')
-							  ->execute();
+							  ->execute()->as_array();
 	
         // Iterate over the returned results
 		foreach ($exchanges as $exchg) {
@@ -345,7 +345,7 @@ class Phonecodes extends \Model
      *  @param string $search the search term (a historical code)
      *  @return array matching search information
      */
-	public function getHistoricalNameInfo($search)
+	public function getHistoricalNameInfo(string $search) : array
 	{
 				
 		$return = [
@@ -364,7 +364,7 @@ class Phonecodes extends \Model
 							  ->from('HistoricalData')
 							  ->where('name', 'LIKE', '%' . $search . '%')
 							  ->order_by('code','asc')
-							  ->execute();
+							  ->execute()->as_array();
 
 		foreach ($oldCodes as $row) {
 
@@ -397,7 +397,7 @@ class Phonecodes extends \Model
 	 * 
 	 * @return string the full group name
 	 */
-	private function formatGroupType($groupType)
+	private function formatGroupType(string $groupType) : string
 	{
 		switch ($groupType) {
 			case "D" :
@@ -426,7 +426,7 @@ class Phonecodes extends \Model
 	 * 
 	 * @return string the formatted routing string
 	 */
-	private function formatRouting($row)
+	private function formatRouting(array $row) : string
 	{
 		// If no routing, return a dash
 		if (empty($row['routingParent'])) {
@@ -443,12 +443,12 @@ class Phonecodes extends \Model
 	 * 
 	 * @access private
 	 * 
-	 * @param array $codes the codes to retrieve exchanges for
+	 * @param array $codes the codes to retrieve exchanges for 
 	 * @param mixed $range if supplied, searches on a subrange in that code (for 02x or ELNS codes). Defaults to false
 	 * 
-	 * @return array matchin exchange information
+	 * @return array matching exchange information
 	 */
-	private function getExchangesForCodes($codes, $range = false)
+	private function getExchangesForCodes(array $codes, mixed $range = false) : array
 	{
 		$return = [];
 
@@ -470,14 +470,14 @@ class Phonecodes extends \Model
 			$exchanges['main'] = $this->db->select(['*'])
 								  ->from('ExchangeList')
 							      ->where('STDCode', 'like', $row['STDCode'])
-								  ->execute();
+								  ->execute()->as_array();
             
 			// Add extra information for director information
 			if ($row['GroupType'] ===  'Director') {
 				$additional = $this->db->select(['*'])
 								  ->from('DirectorAreaMappings')
 							      ->where('STDCode', 'like', $row['STDCode'])
-								  ->execute();
+								  ->execute()->as_array();
 
 				foreach ($additional as $addtl) {
 					$exchanges['additional'][$addtl['id']] = $addtl;
@@ -529,8 +529,6 @@ class Phonecodes extends \Model
 		return $return;
 	}
 
-
-
     /**
      *  @function getAdditionalInfo
      *  @descripton get additional informaiton about this exchange
@@ -540,14 +538,14 @@ class Phonecodes extends \Model
 	 *  @param string $source which field to search in the database
      *  @return mixed matching info, else empty string
      */
-	private function getAdditionalInfo($exchg, $source)
+	private function getAdditionalInfo(array $exchg, string $source) : mixed
 	{
 		// $source will either be MDFReference or STDCode
 		if ($exchg['GroupType'] === 'Director') {
 			$additional = $this->db->select(['*'])
 					->from('DirectorAreaMappings')
 					->where($source, 'LIKE', $exchg[$source])
-					->execute();
+					->execute()->as_array();
 
 			// Iterate over the results
 			if (count($additional) > 0) {
@@ -591,7 +589,7 @@ class Phonecodes extends \Model
      *  @param string $groupType the exchange group type
      *  @return array matching search information
      */
-	private function formatExchangeList($exchangeList, $groupName, $groupType)
+	private function formatExchangeList(array $exchangeList, string $groupName, string $groupType) : array
 	{
 
 		// Data to be returned
@@ -651,10 +649,10 @@ class Phonecodes extends \Model
 	 * @description format the routing sector identifier into a meaningful name
 	 * 
 	 * @access private
-	 * @param string $sector the sector identifier
-	 * @return string the meaningful name
+	 * @param string $sector the sector identifier, if present
+	 * @return mixed the meaningful sector name if found, else null
 	 */
-	private function formatRoutingSector($sector)
+	private function formatRoutingSector(?string $sector) : mixed
 	{
 		if (empty($ector)) {
 			return null;
@@ -683,11 +681,11 @@ class Phonecodes extends \Model
      *  @descripton format previous/original code information
      * 
      *  @access private
-     *  @param mixed $prev previous code information
+     *  @param string $prev previous code information
      *  @param string $orig original code information
      *  @return array the formatted code information
      */
-	private function formatPrevOrig($prev, $orig)
+	private function formatPrevOrig(string $prev, ?string $orig) : array
 	{
 		// Create array from previous codes
 		$tempprev = explode("|", $prev);
@@ -716,11 +714,11 @@ class Phonecodes extends \Model
 	 * @access private
 	 * @param string $stdCode the searched STD code
 	 * @param string $prevCode the previous STD codes
-	 * @param string $origCode the original (i.e. ring) STD code
+	 * @param string $origCode the original (i.e. ring) STD code, if provided
 	 * 
 	 * @return string STD codes in historical order
 	 */
-	private function formatCodeHistory($stdCode, $prevCode, $origCode)
+	private function formatCodeHistory(string $stdCode, string $prevCode, ?string $origCode) : string
 	{
 		// Initiate return storage
 		$return = [];
@@ -772,11 +770,11 @@ class Phonecodes extends \Model
      * 
      * @access private
      * 
-     * @param string $sector the sector
+     * @param string $sector the sector, if provided
      * @param string $groupType the group type
-     * @return array the sector if appropriate, else an empty string
+     * @return mixed the sector if appropriate, else an empty string
      */
-	private function formatSector($sector, $groupType) 
+	private function formatSector(?string $sector, string $groupType) 
 	{
         // Return the sector if the group type is either director or ELNS
         // Return a blank string in all other cases
@@ -795,7 +793,8 @@ class Phonecodes extends \Model
 	 * 
 	 * @return string formatted string of HTML tags
 	 */
-	private function formatMovedCodesLink($codes) {
+	private function formatMovedCodesLink(string $codes) : string
+	{
 		$codeSpans = [];
 		$codes = explode("/", $codes);
 		foreach ($codes as $code) {
@@ -815,7 +814,8 @@ class Phonecodes extends \Model
 	 * 
 	 * @return string formatted string of HTML tags
 	 */
-	private function formatCodeLink($code) {
+	private function formatCodeLink(string $code) : string
+	{
 		return html_tag('span', ['data-std-code' => $code], $code);
 	}
 
@@ -828,7 +828,7 @@ class Phonecodes extends \Model
      * @param string $name
      * @return string the cleansed name
      */
-	private function cleanseName($name)
+	private function cleanseName(string $name) : string
 	{
 		$name = str_replace(["(",")"], "", $name);
 		$name = str_replace([" ","/"], "-", $name);
@@ -843,7 +843,7 @@ class Phonecodes extends \Model
      * 
      * @return array of appropriate delimiters
      */
-	private function getSearchDelimiters()
+	private function getSearchDelimiters() : array
 	{
         /* At the time of writing (April 2024), the hosting I use is running an older version of MySQL
          * which does not recognise the newer "\\b" delimiters for making word boundaries when using REGEXP
@@ -875,7 +875,7 @@ class Phonecodes extends \Model
 	 * 
 	 * @return mixed the processed search if successful, else false
 	 */
-	private function processHistoricalSearchTerm($search)
+	private function processHistoricalSearchTerm(string $search) : string
 	{
 		// All processing is determined on the length of the string
 		switch (strlen($search)) {
@@ -944,7 +944,7 @@ class Phonecodes extends \Model
      * @param array $array the array to remove empty elements from
      * @return array the array with emprty elements removed
      */
-	private function removeEmptyElements($array)
+	private function removeEmptyElements(array $array) : array
 	{
         // Backwards compatiable with serveers which don't allow for null coalesce
 		return array_filter($array, function($value) {

@@ -25,7 +25,7 @@ class Presenter_Phonecodes_Content extends Presenter
 	 *
 	 * @return void
 	 */
-	public function view()
+	public function view() : void
 	{
 		// Dropdown options for search types
 		$searchTypes = [

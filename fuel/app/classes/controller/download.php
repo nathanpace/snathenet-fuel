@@ -62,7 +62,7 @@ class Controller_Download extends Controller_Base
 	 * 
 	 * @throws InvalidPathException
 	 */
-	private function present_download($download) 
+	private function present_download(array $download)
 	{	
 		try {
 			// Determine the filename of the file on the server

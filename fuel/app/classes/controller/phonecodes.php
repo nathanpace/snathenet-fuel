@@ -28,7 +28,7 @@ class Controller_Phonecodes extends Controller_Base
 	 * @access  public
 	 * @return  Response
 	 */
-	public function action_index()
+	public function action_index() : void
 	{
 		$this->setPageAttributes([
 			'js' => ['https://cdn.datatables.net/2.3.7/js/dataTables.js','codesearch.js'],
@@ -50,7 +50,7 @@ class Controller_Phonecodes extends Controller_Base
 	 * @access  public
 	 * @return  mixed Response if page not called from AJAX, else View
 	 */
-	public function action_search()
+	public function action_search() :mixed
 	{
 		// Redirect to 404 page if not called from AJAX
 		if (Input::is_ajax() !== true) {
@@ -95,7 +95,7 @@ class Controller_Phonecodes extends Controller_Base
 	 * @access  public
 	 * @return  mixed Response if page not called from AJAX, else View
 	 */
-	public function action_about()
+	public function action_about() :mixed
 	{ 
 		// Redirect to 404 page if not called from AJAX
 		if (Input::is_ajax() !== true) {
@@ -109,9 +109,10 @@ class Controller_Phonecodes extends Controller_Base
 	 * Search for a particular code
 	 *
 	 * @access  private
+	 * @param Phonecodes $api a Phonecodes api object
 	 * @return  View
 	 */
-	private static function codesearch($api)
+	private static function codesearch(Phonecodes $api): View
 	{
 		// Pass in the search term from the post data to the function to retrieve the matching data
 		$results = $api->getCodeInfo(Input::post('searchterm'));
@@ -137,9 +138,10 @@ class Controller_Phonecodes extends Controller_Base
 	 * Search for a particular charge group
 	 *
 	 * @access  private
+	 * @param Phonecodes $api a Phonecodes api object
 	 * @return  View
 	 */
-	private static function groupsearch($api)
+	private static function groupsearch(Phonecodes $api) : View
 	{
 		// Pass in the search term from the post data to the function to retrieve the matching data
 		$results = $api->getChargeGroupInfo(Input::post('searchterm'));
@@ -165,9 +167,10 @@ class Controller_Phonecodes extends Controller_Base
 	 * Search for a particular exchange
 	 *
 	 * @access  private
+	 * @param Phonecodes $api a Phonecodes api object
 	 * @return  View
 	 */
-	private static function exchangesearch($api)
+	private static function exchangesearch(Phonecodes $api) : View
 	{
 		// Pass in the search term from the post data to the function to retrieve the matching data
 		$results = $api->getExchangeInfo(Input::post('searchterm'));
@@ -194,9 +197,10 @@ class Controller_Phonecodes extends Controller_Base
 	 * Search for historical data
 	 *
 	 * @access  private
+	 * @param Phonecodes $api a Phonecodes api object
 	 * @return  View
 	 */
-	private static function historicalsearch($api)
+	private static function historicalsearch(Phonecodes $api) : View
 	{
 		// Determine what search function to use and get data
 		// (i.e. if search term is numeric, treat as a code)
@@ -235,7 +239,7 @@ class Controller_Phonecodes extends Controller_Base
 	 * @param string|null $searchTerm the search term submitted. Null if not supplied
 	 * @return View
 	 */
-	private static function noresults($searchType, $searchTerm = null)
+	private static function noresults(string $searchType, ?string $searchTerm = null) : View
 	{
 		return View::forge('phonecodes/nomatch', ['searchType' => $searchType, 'searchTerm' => $searchTerm]);
 	}
