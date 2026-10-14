@@ -28,7 +28,7 @@ class Controller_Homepage extends Controller_Base
 	 * @access  public
 	 * @return  Response
 	 */
-	public function action_index()
+	public function action_index() : void
 	{
 		// Set page attributes in base template
 		$this->setPageAttributes([
@@ -49,7 +49,7 @@ class Controller_Homepage extends Controller_Base
 	 * @access  public
 	 * @return  phpinfo
 	 */
-	public function action_info()
+	public function action_info(): mixed
 	{	
 		// Return not found if not localhost, docker, or home IP
 		if (in_array(Input::ip(), ['127.0.0.1', 'localhost', getenv('DOCKER_IP'), getenv('HOME_IP')]) === false) {
@@ -62,7 +62,8 @@ class Controller_Homepage extends Controller_Base
 		// Show environment value, phpini values and phpinfo 
 		echo (\Fuel::$env . "<br>");
 		echo (\Debug::phpini() . "<br>");
-		phpinfo();	
+		phpinfo();
+		return true;
 	}
 
 }

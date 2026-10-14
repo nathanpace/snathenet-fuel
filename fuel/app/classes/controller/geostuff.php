@@ -30,9 +30,9 @@ class Controller_Geostuff extends Controller_Base
 	 * Homepage
 	 *
 	 * @access  public
-	 * @return  Response
+	 * @return  void
 	 */
-	public function action_index()
+	public function action_index() : void
 	{
 		$this->setPageAttributes([
 			'js' => ['locationsearch.js', 'clocks2.js'],
@@ -48,9 +48,9 @@ class Controller_Geostuff extends Controller_Base
 	 * Search action
 	 *
 	 * @access  public
-	 * @return  Response
+	 * @return  
 	 */
-	public function action_search()
+	public function action_search() : View
 	{
 
 		// Redirect to 404 page if not called from AJAX
