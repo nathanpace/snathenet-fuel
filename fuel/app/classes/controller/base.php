@@ -64,7 +64,7 @@ class Controller_Base extends Controller_Template
 	 * @access  public
 	 * @return  Response
 	 */
-	public function action_404()
+	public function action_404() : Response
 	{
 		// Wrapper function for the 404 code
 		return $this->show404();
@@ -78,7 +78,7 @@ class Controller_Base extends Controller_Template
 	 * 
 	 * @return void
 	 */
-	protected function setPageAttributes($attrs = []) 
+	protected function setPageAttributes(array $attrs = []) : void
 	{
 		// Build up the data array to be passed to the view
 		$data = [
@@ -111,7 +111,7 @@ class Controller_Base extends Controller_Template
 	 * 
 	 * @return void
 	 */
-	protected function setContent($content)
+	protected function setContent(array $content) : void
 	{
 		// Set the content accordingly. 
 		// If data is not present in the $content array, default to null
@@ -126,7 +126,7 @@ class Controller_Base extends Controller_Template
 	 * 
 	 * @return Response
 	 */
-	protected function show404()
+	protected function show404() : Response
 	{
 		// Use default page attributes
 		$this->setPageAttributes();
@@ -144,9 +144,11 @@ class Controller_Base extends Controller_Template
 	 * @function showError
 	 * @description show generic error content
 	 * 
+	 * @param string $message the error message to display
+	 * @param int $code the HTTP status code
 	 * @return Response
 	 */
-	protected function showError($message, $code = 500)
+	protected function showError(string $message, int $code = 500) : Response
 	{
 		// Use default page attributes
 		$this->setPageAttributes();
@@ -175,7 +177,7 @@ class Controller_Base extends Controller_Template
 	 * 
 	 * @return void
 	 */
-	private function setHeader($data = null)
+	private function setHeader(?array $data = null) : void
 	{
 		// Initialise variables on data array
 		$data['siteMenuInternal'] = "";
@@ -211,11 +213,11 @@ class Controller_Base extends Controller_Template
 	 * Set the body
 	 * 
 	 * @access private
-	 * @param array $data the data to set in the header. Defaults to null if not supplied
+	 * @param object $data the data to set in the header. Defaults to null if not supplied
 	 * 
 	 * @return void
 	 */
-	private function setBody($data = null)
+	private function setBody(?object $data = null) : void
 	{
 		// Add data
 		$this->template->body = $data;
@@ -229,7 +231,7 @@ class Controller_Base extends Controller_Template
 	 * 
 	 * @return void
 	 */
-	private function setFooter($data = null)
+	private function setFooter(?array $data = null) : void
 	{
 		// Forge view, add data
 		$this->template->footer = View::forge('base/footer', $data);
@@ -244,7 +246,7 @@ class Controller_Base extends Controller_Template
 	 * 
 	 * @return void
 	 */
-	public function ignoreBaseTemplate()
+	public function ignoreBaseTemplate() : void
 	{
 		$this->template->pageHead = null;
 		$this->template->header = null;

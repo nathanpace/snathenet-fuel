@@ -27,7 +27,7 @@ class MyLog extends Fuel\Core\Log {
 	 * @return	bool
 	 * @throws	\FuelException
 	 */
-   	public static function write(mixed $level, string $msg, mixed $context = null) : bool
+   	public static function write($level, $msg, $context = null)
 	{
 
 		// for compatibility with Monolog contexts
