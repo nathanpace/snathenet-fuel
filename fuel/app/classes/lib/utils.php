@@ -14,7 +14,7 @@ class Utils {
      * 
      * @return string HTML link if matching format found, else "Unavailable"
      */
-    public static function createMapLink($data)
+    public static function createMapLink(mixed $data) : string
     {
         // Array of data? Assume lat/long coordinnates
         if (is_array($data)) {
@@ -39,7 +39,7 @@ class Utils {
      * 
      * @return bool whether the queried string matches UK postcode format
      */
-    public static function isUKPostcode($query)
+    public static function isUKPostcode(string $query) : bool
 	{
 		// Remove all whitespace
 		$query = preg_replace('/\s/', '', $query);
@@ -62,7 +62,7 @@ class Utils {
      * 
      * @return string HTML link
      */
-    private static function createMapLinkFromLatLong($coords)
+    private static function createMapLinkFromLatLong(array $coords) : string
     {	
         // Use the native FuelPHP function to create the link
         return \Html::anchor(
@@ -81,7 +81,7 @@ class Utils {
      * 
      * @return string HTML link
      */
-    private static function createMapLinkFromPostcode($postcode)
+    private static function createMapLinkFromPostcode(string $postcode) : string
     {
 		// Use the native FuelPHP function to create the link
 		return \Html::anchor(
