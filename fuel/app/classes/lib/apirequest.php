@@ -1,6 +1,9 @@
 <?php
-
-
+/**
+ * APIRequest
+ * 
+ * Wrapper class for handling calls to APIs
+ */
 use \Fuel\Core\Request;
 use \MyLog as MyLog;
 
@@ -20,7 +23,7 @@ abstract class ApiRequest
 	 * 
 	 * Populate object parameters
 	 */
-	protected function __construct($url)
+	protected function __construct(string $url)
 	{
 		$this->baseURL = $url;
 
@@ -36,7 +39,7 @@ abstract class ApiRequest
 	 * 
 	 * @return void
 	 */
-	protected function appendToBaseURL($url)
+	protected function appendToBaseURL(string $url) : void
 	{
 		if (is_null($this->baseURL)|| empty($this->baseURL) === false) {
 			$this->baseURL .= $url; 
@@ -49,13 +52,12 @@ abstract class ApiRequest
 	 * 
 	 * @access private
 	 * 
-	 * @param string $apiUrl the API's URL
 	 * @param array $params params to pass to the API
 	 * 
 	 * @return array response from API
 	 * 
 	 */
-	protected function call($params)
+	protected function call(array $params) : array
 	{
 		// Go no further if no API url has been set
 		if (is_null($this->baseURL) || $this->baseURL === false) {
