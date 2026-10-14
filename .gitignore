@@ -14,3 +14,7 @@ nbproject/
 *.sublime-project
 *.sublime-workspace
 mysql/
+
+# Hide Dockerfile and docker-compose in main
+Dockerfile
+docker-compose.yml
