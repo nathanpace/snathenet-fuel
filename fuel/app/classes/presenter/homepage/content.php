@@ -27,7 +27,7 @@ class Presenter_Homepage_Content extends Presenter
 	 *
 	 * @return void
 	 */
-	public function view()
+	public function view() : void
 	{
 		$timezone = new \DateTimeZone(getenv('HOME_TZ'));
 		$now = new \DateTime();

@@ -27,7 +27,7 @@ class Presenter_Geostuff_Content extends Presenter
 	 *
 	 * @return void
 	 */
-	public function view()
+	public function view() : void
 	{
 		// Place name array. Home location will always be first
 		$places = [
@@ -132,7 +132,7 @@ class Presenter_Geostuff_Content extends Presenter
 	 * 
 	 * @return Fieldset
 	 */
-	private function buildSearchForm()
+	private function buildSearchForm() : Fieldset
 	{
 		// Text for the label
 		$labelText = "Location search (either UK postcode GB place name; leave blank for random location):&nbsp;";
