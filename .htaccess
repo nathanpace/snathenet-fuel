@@ -1,5 +1,5 @@
 # Multiple Environment config, set this to development, staging or production
-#SetEnv FUEL_ENV development
+# SetEnv FUEL_ENV production
 
 <IfModule mod_rewrite.c>
 
@@ -14,6 +14,11 @@
 
 	# Restrict your site to only one domain
 	# !important USE ONLY ONE OPTION
+
+	# Fix for PHP vulnerability reported 21/10/2026 
+	# https://arstechnica.com/security/2026/10/php-maintainers-tell-web-devs-to-prepare-themselves-for-critical-security-patches/
+	RewriteCond %{HTTP:Content-Type} multipart/form-data [NC]
+	RewriteRule ^ - [F]
 
 	# Option 1: To rewrite "www.domain.com -> domain.com" uncomment the following lines.
 	#RewriteCond %{HTTPS} !=on
@@ -72,5 +77,21 @@
 
 </IfModule>
 
-# To restrict IP access, uncomment the line below and then add 'allow from {ip_address}' lines as required
-#deny from all
+<FilesMatch "\.(php|inc|phtml)$">
+# AddHandler application/x-httpd-php5 .inc .php .phtml
+</FilesMatch>
+
+<Files 403.shtml>
+order allow,deny
+allow from all
+</Files>
+
+deny from 52.169.20.129
+deny from 13.74.103.156
+
+# php -- BEGIN cPanel-generated handler, do not edit
+# Set the “ea-php80” package as the default “PHP” programming language.
+<IfModule mime_module>
+  AddHandler application/x-httpd-ea-php80 .php .php8 .phtml
+</IfModule>
+# php -- END cPanel-generated handler, do not edit
