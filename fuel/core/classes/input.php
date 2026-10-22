@@ -37,7 +37,7 @@ class Input
 	 *
 	 * @return Input_Instance
 	 */
-	public static function forge(Request $new = null, Input_Instance $input = null)
+	public static function forge(?Request $new = null, ?Input_Instance $input = null)
 	{
 		if ($new)
 		{

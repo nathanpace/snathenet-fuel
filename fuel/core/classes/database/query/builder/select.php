@@ -60,7 +60,7 @@ class Database_Query_Builder_Select extends \Database_Query_Builder_Where
 	 *
 	 * @param  array  $columns  column list
 	 */
-	public function __construct(array $columns = null)
+	public function __construct(?array $columns = null)
 	{
 		if ( ! empty($columns))
 		{
