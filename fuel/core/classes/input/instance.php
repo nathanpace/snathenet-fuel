@@ -448,7 +448,7 @@ class Input_Instance
 
 		// get the content type from the header, strip optional parameters
 		$content_header = \Input::headers('Content-Type');
-		if (($content_type = strstr($content_header, ';', true)) === false)
+		if (($content_type = strstr($content_header ?? '', ';', true)) === false)
 		{
 			$content_type = $content_header;
 		}
